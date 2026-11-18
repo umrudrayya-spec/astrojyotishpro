@@ -273,3 +273,8 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
   Panchanga cross-checked for Ugadi 2024 Hyderabad (Pratipada until ~20:30 IST, Revati, sunrise 06:04).
   Manifest of pending work = `roadmap.md` + `docs/AUDIT.md`. Next: Shadbala, yoga/dosha engine, KP,
   transits/Sade Sati, matching, AI astrologer, reports.
+- 2026-11-18 06:42 — file-8 = same as file-7 (completion prompt); continued. Added yoga & dosha engine
+  (`yogas.ts`, 23 rules, statuses confirmed/weakened/cancelled/conditional/not formed/insufficient data,
+  Kuja 2nd-house is a setting) and transits (`gochara.ts`: transit table for any date, lifetime Saturn
+  phases; retrograde dips < 900 days stay one Sade Sati). Both on the chart page. 105 tests pass;
+  Saturn ingress dates match 2023-01-17 / 2025-03-29 (Lahiri). Next: Shadbala, KP, matching, AI, reports.

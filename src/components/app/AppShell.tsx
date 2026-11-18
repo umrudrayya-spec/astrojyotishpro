@@ -17,7 +17,7 @@ import { LanguageSwitch } from "./LanguageSwitch";
 import { LogoMark } from "./Logo";
 
 /** Sections that live inside the birth chart page; only "Birth chart" itself shows as active there. */
-const CHART_ALIASES = new Set(["vargas", "dashas", "parashari", "ashtakavarga", "jaimini"]);
+const CHART_ALIASES = new Set(["vargas", "dashas", "parashari", "ashtakavarga", "jaimini", "yogas", "doshas", "gochar"]);
 
 const linkCls =
   "flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground/80 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring";

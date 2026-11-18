@@ -12,10 +12,10 @@
 - [ ] Stage 2: Bhava Chalit, Argala, Rashi drishti, planetary war, Graha Maitri view, Avasthas, Pushkara/Mrityu Bhaga/Gandanta, varga comparison, Vimshopaka
 - [~] 7. KP and Jaimini — done: Chara Karakas 7/8, Karakamsha, Rashi drishti, Argala. Pending: KP entirely, Chara/Narayana dasha
 - [~] 8. Panchanga — done: tithi/vara/nakshatra/yoga/karana with end times, sunrise/sunset, Rahu/Yama/Gulika, Abhijit, Choghadiya, Hora. Pending: moonrise, month/samvatsara, Varjyam/Durmuhurta
-- [~] 9. Ashtakavarga, Shadbala, yogas — done: BAV/SAV + Trikona Shodhana. Pending: Ekadhipatya, Pinda, Shadbala, yoga/dosha engine
+- [~] 9. Ashtakavarga, Shadbala, yogas — done: BAV/SAV + Trikona Shodhana. Yoga/dosha engine (23 rules). Pending: Ekadhipatya, Pinda, Shadbala, more yogas
 - [ ] 10. Numerology
 - [ ] 11. Western astrology
-- [ ] 12. Predictive analysis / transits
+- [~] 12. Predictive analysis / transits — done: transit table, Sade Sati/4th/8th Saturn over life. Pending: double transit, Vedha, dasha-transit correlation
 - [ ] 13. Matchmaking & Prashna
 - [ ] 14. Muhurta
 - [ ] 15. AI astrologer (built-in AI + optional user Gemini key)

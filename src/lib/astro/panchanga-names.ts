@@ -113,3 +113,31 @@ export const YOGINI_NAMES: Record<YoginiId, TE> = {
   siddha: { te: "సిద్ధ", en: "Siddha" },
   sankata: { te: "సంకట", en: "Sankata" },
 };
+
+import type { YogaId } from "./yogas";
+
+export const YOGA_NAMES: Record<YogaId, TE> = {
+  ruchaka: { te: "రుచక యోగం", en: "Ruchaka yoga" },
+  bhadra: { te: "భద్ర యోగం", en: "Bhadra yoga" },
+  hamsa: { te: "హంస యోగం", en: "Hamsa yoga" },
+  malavya: { te: "మాలవ్య యోగం", en: "Malavya yoga" },
+  shasha: { te: "శశ యోగం", en: "Shasha yoga" },
+  gajakesari: { te: "గజకేసరి యోగం", en: "Gajakesari yoga" },
+  budhaditya: { te: "బుధాదిత్య యోగం", en: "Budhaditya yoga" },
+  chandra_mangala: { te: "చంద్ర-మంగళ యోగం", en: "Chandra-Mangala yoga" },
+  sunapha: { te: "సునఫా యోగం", en: "Sunapha yoga" },
+  anapha: { te: "అనఫా యోగం", en: "Anapha yoga" },
+  durudhura: { te: "దురుధరా యోగం", en: "Durudhura yoga" },
+  kemadruma: { te: "కేమద్రుమ యోగం", en: "Kemadruma yoga" },
+  adhi: { te: "అధి యోగం", en: "Adhi yoga" },
+  raja: { te: "రాజ యోగం", en: "Raja yoga" },
+  dhana: { te: "ధన యోగం", en: "Dhana yoga" },
+  harsha: { te: "హర్ష (విపరీత రాజ) యోగం", en: "Harsha (Viparita Raja) yoga" },
+  sarala: { te: "సరళ (విపరీత రాజ) యోగం", en: "Sarala (Viparita Raja) yoga" },
+  vimala: { te: "విమల (విపరీత రాజ) యోగం", en: "Vimala (Viparita Raja) yoga" },
+  neecha_bhanga: { te: "నీచ భంగ రాజ యోగం", en: "Neecha Bhanga Raja yoga" },
+  kuja_dosha: { te: "కుజ దోషం", en: "Kuja dosha" },
+  kala_sarpa: { te: "కాల సర్ప దోషం", en: "Kala Sarpa dosha" },
+  grahana: { te: "గ్రహణ దోషం", en: "Grahana dosha" },
+  guru_chandala: { te: "గురు చండాల యోగం", en: "Guru Chandala yoga" },
+};

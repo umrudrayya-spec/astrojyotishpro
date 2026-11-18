@@ -87,10 +87,10 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { id: "vargas", label: "secVargas", icon: Grid3x3, to: "/chart", keywords: "navamsha d9 d10 varga" },
       { id: "strength", label: "secStrength", icon: Scale, keywords: "shadbala" },
-      { id: "yogas", label: "secYogas", icon: Sparkles },
-      { id: "doshas", label: "secDoshas", icon: ShieldAlert, keywords: "kuja manglik" },
+      { id: "yogas", label: "secYogas", icon: Sparkles, to: "/chart", keywords: "raja gajakesari hamsa neecha bhanga" },
+      { id: "doshas", label: "secDoshas", icon: ShieldAlert, to: "/chart", keywords: "kuja manglik kala sarpa kemadruma" },
       { id: "dashas", label: "secDashas", icon: Timer, to: "/chart", keywords: "vimshottari yogini mahadasha antardasha" },
-      { id: "gochar", label: "secGochar", icon: TrendingUp, keywords: "transit sade sati" },
+      { id: "gochar", label: "secGochar", icon: TrendingUp, to: "/chart", keywords: "transit sade sati elinati shani ashtama" },
       { id: "ashtakavarga", label: "secAshtakavarga", icon: Layers, to: "/chart", keywords: "bav sav bindu" },
     ],
   },
