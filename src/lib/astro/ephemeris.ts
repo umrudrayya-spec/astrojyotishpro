@@ -37,7 +37,7 @@ export interface RawChart {
   };
 }
 
-export const ALGORITHM_VERSION = "astro-core-1.1.0";
+export const ALGORITHM_VERSION = "astro-core-1.2.0";
 
 const PLANET_CODES: Record<Exclude<GrahaId, "rahu" | "ketu">, number> = {
   sun: 0,
@@ -180,4 +180,60 @@ export function computeRawChart(
       computedAt: new Date().toISOString(),
     },
   };
+}
+
+// ---------------------------------------------------------------------------
+// Lightweight helpers for time-series work (Panchanga, transits). Same engine, same flags.
+
+const DAY_MS = 86_400_000;
+export const jdFromDate = (d: Date) => d.getTime() / DAY_MS + 2440587.5;
+export const dateFromJd = (jd: number) => new Date(Math.round((jd - 2440587.5) * DAY_MS));
+
+/** Sidereal (or tropical, if the ayanamsha is "tropical") longitudes of the Sun and Moon at jdUt. */
+export function sunMoonAt(
+  eph: { swe: SweType; source: EphemerisSource },
+  jdUt: number,
+  ayanamsha: CalcSettings["ayanamsha"],
+): { sun: number; moon: number; ayanamsha: number } {
+  const { swe, source } = eph;
+  const baseFlag = source === "swiss_files" ? FLAG_SWISS : FLAG_MOSHIER;
+  const ayan = AYANAMSHAS[ayanamsha];
+  const sidereal = ayan.sidm !== null;
+  if (sidereal) swe.setSiderealMode(ayan.sidm as number);
+  const flag = baseFlag | (sidereal ? FLAG_SIDEREAL : 0);
+  return {
+    sun: norm360(swe.calculatePosition(jdUt, 0, flag).longitude),
+    moon: norm360(swe.calculatePosition(jdUt, 1, flag).longitude),
+    ayanamsha: sidereal ? swe.getAyanamsaExUt(jdUt, baseFlag) : 0,
+  };
+}
+
+/** Sidereal longitude of any graha at jdUt (used for transits). */
+export function grahaLongitudeAt(
+  eph: { swe: SweType; source: EphemerisSource },
+  jdUt: number,
+  id: Exclude<GrahaId, "ketu">,
+  settings: Pick<CalcSettings, "ayanamsha" | "nodeType">,
+): { longitude: number; speed: number } {
+  const { swe, source } = eph;
+  const baseFlag = source === "swiss_files" ? FLAG_SWISS : FLAG_MOSHIER;
+  const ayan = AYANAMSHAS[settings.ayanamsha];
+  const sidereal = ayan.sidm !== null;
+  if (sidereal) swe.setSiderealMode(ayan.sidm as number);
+  const code = id === "rahu" ? (settings.nodeType === "true" ? TRUE_NODE : MEAN_NODE) : PLANET_CODES[id];
+  const p = swe.calculatePosition(jdUt, code, baseFlag | FLAG_SPEED | (sidereal ? FLAG_SIDEREAL : 0));
+  return { longitude: norm360(p.longitude), speed: p.longitudeSpeed };
+}
+
+/** Geometric altitude (degrees, no refraction) of the Sun's centre at jdUt for a place. */
+export function sunAltitude(eph: { swe: SweType; source: EphemerisSource }, jdUt: number, latitude: number, longitude: number): number {
+  const { swe, source } = eph;
+  const baseFlag = source === "swiss_files" ? FLAG_SWISS : FLAG_MOSHIER;
+  const eq = swe.calculatePosition(jdUt, 0, baseFlag | FLAG_EQUATORIAL);
+  const rad = Math.PI / 180;
+  const lst = norm360(swe.siderealTime(jdUt) * 15 + longitude);
+  const H = (lst - eq.longitude) * rad;
+  const phi = latitude * rad;
+  const dec = eq.latitude * rad;
+  return Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H)) / rad;
 }

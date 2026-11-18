@@ -264,3 +264,12 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
   favourite (sorted first), archive/restore (hidden from dashboard/chart picker), CSV import/export
   (blank offset resolved from IANA history). DB: birth_profiles.is_favorite, archived_at. 75 tests pass;
   checked signed in on the preview. Next: Stage 2 (see roadmap.md). Still open: port file-4 features?
+- 2026-11-18 06:33 — file-7 "final complete implementation prompt" (saved as
+  `docs/specs/astrojyotish-pro-final-completion-prompt.md`): asks to finish every remaining module
+  autonomously, keep a manifest of done/pending, never claim untested work. This turn: Panchanga page
+  (`/panchanga`) with end times, sunrise rule setting, Rahu/Yama/Gulika, Abhijit, Choghadiya, Hora;
+  Yogini dasha; Ashtakavarga BAV/SAV + Trikona Shodhana; Jaimini Chara Karakas (7/8 setting),
+  Karakamsha, Rashi drishti, Argala on Lagna. ALGORITHM_VERSION → astro-core-1.2.0. 92 tests pass;
+  Panchanga cross-checked for Ugadi 2024 Hyderabad (Pratipada until ~20:30 IST, Revati, sunrise 06:04).
+  Manifest of pending work = `roadmap.md` + `docs/AUDIT.md`. Next: Shadbala, yoga/dosha engine, KP,
+  transits/Sade Sati, matching, AI astrologer, reports.

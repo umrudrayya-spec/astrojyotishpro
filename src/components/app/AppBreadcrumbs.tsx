@@ -10,7 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { birthProfileQuery } from "@/lib/birth-profiles";
-import { findNavForPath } from "@/lib/nav";
+import { findNavForPath, type NavPath } from "@/lib/nav";
 import { useI18n } from "@/lib/i18n";
 
 /** Home › Category › Section [› profile name], derived from the current URL. */
@@ -22,7 +22,7 @@ export function AppBreadcrumbs() {
   const { data: profile } = useQuery({ ...birthProfileQuery(chartId ?? ""), enabled: !!chartId });
   if (!match) return null;
   const atSection = pathname.replace(/\/+$/, "") === match.item.to;
-  const crumbs: { label: string; to?: "/dashboard" | "/profiles" | "/chart" | "/settings" }[] = [];
+  const crumbs: { label: string; to?: NavPath }[] = [];
   if (match.item.id !== "dashboard") crumbs.push({ label: t("breadcrumbHome"), to: "/dashboard" });
   crumbs.push({ label: t(match.group.label) });
   crumbs.push(atSection ? { label: t(match.item.label) } : { label: t(match.item.label), ...(match.item.to ? { to: match.item.to } : {}) });

@@ -65,15 +65,15 @@ published charts) is still needed (spec v3 §36.4).
 | Natural/functional nature, Yogakaraka, Maraka, Badhaka, dispositors, Arudha A1–A12 | yes | Arudha yes | — | V |
 | Divisional charts D1–D60 (20) | yes | 16 | add varga comparison, Vimshopaka | P |
 | Vimshottari to Prana | yes | yes | add timeline graphic, comparison | V |
-| Yogini / Ashtottari / Chara / Narayana / Kalachakra | no | Yogini, Chara variant | port with eligibility rules | M |
+| Yogini / Ashtottari / Chara / Narayana / Kalachakra | Yogini (MD+AD, `yogini.ts`) | Yogini, Chara variant | add Ashtottari, Chara, Narayana, Kalachakra | P |
 | Avasthas, Pushkara, Mrityu Bhaga, Gandanta | no | yes | port with source labels | M |
 | Shadbala, Bhava Bala, Ishta/Kashta | no | partial | implement full BPHS | M |
-| Ashtakavarga (BAV/SAV, Shodhana, Pinda) | no | BAV/SAV | implement + Shodhana | M |
+| Ashtakavarga (BAV/SAV, Shodhana, Pinda) | BAV, SAV, Trikona Shodhana (`ashtakavarga.ts`) | BAV/SAV | add Ekadhipatya Shodhana, Shodhya Pinda | P |
 | Yoga & Dosha rule engine | no | basic list | build rule engine (spec v3 §12–13) | M |
 | Gochara, Sade Sati, ingress, double transit | no | yes | implement | M |
-| Jaimini (Karakas 7/8, Karakamsha, Argala, Chara/Narayana) | Arudha only | 7 Karakas, Chara | implement | M |
+| Jaimini (Karakas 7/8, Karakamsha, Argala, Chara/Narayana) | 7/8 Karakas (setting), Karakamsha, Rashi drishti, Argala on Lagna, Arudha (`jaimini.ts`) | 7 Karakas, Chara | add Chara/Narayana dasha, Jaimini yogas, Argala per house | P |
 | KP (cusps, sub/sub-sub, significators, RP, horary 1–249) | no | most except 1–249 | implement | M |
-| Panchanga, Choghadiya, Rahu/Yama/Gulika, sunrise | no | yes | implement with Swiss rise/set | M |
+| Panchanga, Choghadiya, Rahu/Yama/Gulika, sunrise | yes — `/panchanga`, `panchanga.ts`, sunrise rule is a setting; tested on Ugadi 2024 | yes | add moonrise/moonset, Hindu month/samvatsara, Dur muhurta, Varjyam | P |
 | Muhurta, Prashna, Varshaphala, rectification | no | basic | implement | M |
 | Matching (Ashtakoota, Dashakoota, Kuja) | no | yes | implement | M |
 | Numerology (Vedic/Chaldean/Pythagorean/Lo Shu) | no | basic + yantras | implement | M |

@@ -29,6 +29,9 @@ import { useChart } from "@/lib/astro/use-chart";
 import { VARGAS, VARGA_BY_ID, isVargottama, vargaPosition, type VargaId } from "@/lib/astro/varga";
 import { DashaPanel } from "@/components/chart/DashaPanel";
 import { NaturePanel } from "@/components/chart/NaturePanel";
+import { AshtakavargaPanel } from "@/components/chart/AshtakavargaPanel";
+import { JaiminiPanel } from "@/components/chart/JaiminiPanel";
+import { YoginiPanel } from "@/components/chart/YoginiPanel";
 import type { BirthProfile, UserProfile } from "@/lib/birth-profiles";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -398,6 +401,16 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
             timeZone={profile.timezone}
             timeKnown={profile.time_known}
           />
+
+          <YoginiPanel
+            moonLongitude={chart.planets.find((p) => p.id === "moon")!.longitude}
+            birth={utc}
+            timeZone={profile.timezone}
+          />
+
+          <AshtakavargaPanel chart={chart} timeKnown={profile.time_known} />
+
+          <JaiminiPanel chart={chart} timeKnown={profile.time_known} />
 
           <section className="rounded-2xl border bg-card p-5 shadow-card">
             <h2 className="mb-3 text-lg font-semibold">{t("calcDetails")}</h2>

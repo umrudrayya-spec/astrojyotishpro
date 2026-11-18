@@ -5,14 +5,14 @@
 - [x] 3. Astronomical engine (Swiss Ephemeris WASM, ayanamsha library, houses, nodes)
 - [~] 4. Core Parashari engine — done: sign/nakshatra/pada, dignity (compound), combustion, retro, lordship, graha drishti, conjunctions, parivartana, natural/functional nature, dispositors, Maraka/Badhaka, Arudha Padas. Pending: Bhava Chalit, Argala, yoga & dosha rule engine
 - [~] 5. Divisional charts D1–D60 — done: all 20 vargas, Vargottama. Pending: varga strength, comparisons, analysis pages
-- [~] 6. Dasha systems — done: Vimshottari to Prana. Pending: Yogini, Ashtottari, Chara, Narayana, Kalachakra, others; timeline graphic
+- [~] 6. Dasha systems — done: Vimshottari to Prana, Yogini (MD+AD). Pending: Ashtottari, Chara, Narayana, Kalachakra, others; timeline graphic
 - [x] Spec v3 Phase 1 audit (`docs/AUDIT.md`), rename to AstroJyotish Pro
 - [ ] Waiting on user: confirm the HTML tool (file-4) is the existing app to port features from
 - [x] Stage 1 / spec v3 Phase 2: 40-section sidebar, breadcrumbs, Ctrl+K search, recent charts, profile search/favourite/archive/CSV
 - [ ] Stage 2: Bhava Chalit, Argala, Rashi drishti, planetary war, Graha Maitri view, Avasthas, Pushkara/Mrityu Bhaga/Gandanta, varga comparison, Vimshopaka
-- [ ] 7. KP and Jaimini
-- [ ] 8. Panchanga
-- [ ] 9. Ashtakavarga, Shadbala, yogas
+- [~] 7. KP and Jaimini — done: Chara Karakas 7/8, Karakamsha, Rashi drishti, Argala. Pending: KP entirely, Chara/Narayana dasha
+- [~] 8. Panchanga — done: tithi/vara/nakshatra/yoga/karana with end times, sunrise/sunset, Rahu/Yama/Gulika, Abhijit, Choghadiya, Hora. Pending: moonrise, month/samvatsara, Varjyam/Durmuhurta
+- [~] 9. Ashtakavarga, Shadbala, yogas — done: BAV/SAV + Trikona Shodhana. Pending: Ekadhipatya, Pinda, Shadbala, yoga/dosha engine
 - [ ] 10. Numerology
 - [ ] 11. Western astrology
 - [ ] 12. Predictive analysis / transits

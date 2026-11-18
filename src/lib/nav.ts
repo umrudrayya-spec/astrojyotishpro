@@ -41,7 +41,7 @@ import {
 import type { DictKey } from "@/lib/i18n";
 
 /** Routes that exist today. A section with `to` is a real link; one without is shown as "coming". */
-export type NavPath = "/dashboard" | "/profiles" | "/chart" | "/settings";
+export type NavPath = "/dashboard" | "/profiles" | "/chart" | "/panchanga" | "/settings";
 
 export interface NavItem {
   id: string;
@@ -89,9 +89,9 @@ export const NAV_GROUPS: NavGroup[] = [
       { id: "strength", label: "secStrength", icon: Scale, keywords: "shadbala" },
       { id: "yogas", label: "secYogas", icon: Sparkles },
       { id: "doshas", label: "secDoshas", icon: ShieldAlert, keywords: "kuja manglik" },
-      { id: "dashas", label: "secDashas", icon: Timer, to: "/chart", keywords: "vimshottari mahadasha antardasha" },
+      { id: "dashas", label: "secDashas", icon: Timer, to: "/chart", keywords: "vimshottari yogini mahadasha antardasha" },
       { id: "gochar", label: "secGochar", icon: TrendingUp, keywords: "transit sade sati" },
-      { id: "ashtakavarga", label: "secAshtakavarga", icon: Layers, keywords: "bav sav" },
+      { id: "ashtakavarga", label: "secAshtakavarga", icon: Layers, to: "/chart", keywords: "bav sav bindu" },
     ],
   },
   {
@@ -99,7 +99,7 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "grpSchools",
     items: [
       { id: "parashari", label: "secParashari", icon: Compass, to: "/chart", keywords: "drishti aspects maraka badhaka arudha" },
-      { id: "jaimini", label: "secJaimini", icon: Waypoints, keywords: "karaka chara" },
+      { id: "jaimini", label: "secJaimini", icon: Waypoints, to: "/chart", keywords: "karaka chara atmakaraka argala" },
       { id: "kp", label: "secKp", icon: Hash, keywords: "krishnamurti sub lord" },
     ],
   },
@@ -120,7 +120,7 @@ export const NAV_GROUPS: NavGroup[] = [
     id: "timing",
     label: "grpTiming",
     items: [
-      { id: "panchanga", label: "secPanchanga", icon: CalendarDays, keywords: "tithi rahu kalam" },
+      { id: "panchanga", label: "secPanchanga", icon: CalendarDays, to: "/panchanga", keywords: "tithi rahu kalam choghadiya hora sunrise" },
       { id: "muhurta", label: "secMuhurta", icon: Clock },
       { id: "prashna", label: "secPrashna", icon: HelpCircle, keywords: "horary" },
       { id: "rectification", label: "secRectification", icon: Timer },
