@@ -10,9 +10,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "పాస్‌వర్డ్ రీసెట్ — జ్యోతిష దర్పణం" },
-      { name: "description", content: "Set a new password for your Jyotisha Darpanam account." },
-      { property: "og:title", content: "Reset password — Jyotisha Darpanam" },
+      { title: "పాస్‌వర్డ్ రీసెట్ — ఆస్ట్రోజ్యోతిష్ ప్రో" },
+      { name: "description", content: "Set a new password for your AstroJyotish Pro account." },
+      { property: "og:title", content: "Reset password — AstroJyotish Pro" },
       { property: "og:description", content: "Set a new password for your account." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -14,9 +14,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
-      { title: "ముఖ్య పేజీ — జ్యోతిష దర్పణం" },
+      { title: "ముఖ్య పేజీ — ఆస్ట్రోజ్యోతిష్ ప్రో" },
       { name: "description", content: "Your astrology dashboard: saved birth profiles and today's planetary positions." },
-      { property: "og:title", content: "Dashboard — Jyotisha Darpanam" },
+      { property: "og:title", content: "Dashboard — AstroJyotish Pro" },
       { property: "og:description", content: "Saved birth profiles and today's planetary positions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

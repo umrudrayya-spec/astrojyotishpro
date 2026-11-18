@@ -239,6 +239,7 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
                 </div>
                 <div>{t(vargaRule.source === "BPHS" ? "vargaSourceBphs" : "vargaSourceLater")}</div>
                 {varga !== "D1" && <div>{t("vargaDegreeNote")}</div>}
+                {varga !== "D1" && !profile.time_known && <div className="text-warning">{t("vargaTimeUnknown")}</div>}
               </div>
             </div>
             <div className="space-y-4">
@@ -395,6 +396,7 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
             moonLongitude={chart.planets.find((p) => p.id === "moon")!.longitude}
             birth={utc}
             timeZone={profile.timezone}
+            timeKnown={profile.time_known}
           />
 
           <section className="rounded-2xl border bg-card p-5 shadow-card">

@@ -29,7 +29,7 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-## Project rules (Jyotisha Darpanam)
+## Project rules (AstroJyotish Pro)
 
 - Read `chat.md` first; it is the central project memory and status file. Update it after every task.
 - All astronomy comes from Swiss Ephemeris via `@swisseph/browser` (WASM) in `src/lib/astro/ephemeris.ts`, run in the browser; AI and UI code never compute or invent positions. Why: deterministic, reproducible, and the Worker runtime stays free of native code.
@@ -41,3 +41,4 @@ use the editor.
 - All UI strings go through the typed dictionary in `src/lib/i18n.tsx` (`t(key)`); Telugu is the default language. Why: every screen must switch language without data loss.
 - Ephemeris tests run in the node vitest environment with a fetch stub that reads the local `.wasm` file. Why: the WASM loader uses fetch.
 - No AI-generated images; visuals are SVG/Tailwind/Lucide only. Why: user requirement.
+- `docs/AUDIT.md` is the feature inventory (status per feature in this app vs the reference HTML tool in `docs/reference/`); update its status column when a feature lands. Why: spec v3 requires a maintained implementation inventory.

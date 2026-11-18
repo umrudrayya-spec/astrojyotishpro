@@ -6,7 +6,9 @@
 - [~] 4. Core Parashari engine — done: sign/nakshatra/pada, dignity (compound), combustion, retro, lordship, graha drishti, conjunctions, parivartana, natural/functional nature, dispositors, Maraka/Badhaka, Arudha Padas. Pending: Bhava Chalit, Argala, yoga & dosha rule engine
 - [~] 5. Divisional charts D1–D60 — done: all 20 vargas, Vargottama. Pending: varga strength, comparisons, analysis pages
 - [~] 6. Dasha systems — done: Vimshottari to Prana. Pending: Yogini, Ashtottari, Chara, Narayana, Kalachakra, others; timeline graphic
-- [ ] Waiting on user: product name (AstroJyotish Pro vs Jyotisha Darpanam)
+- [x] Spec v3 Phase 1 audit (`docs/AUDIT.md`), rename to AstroJyotish Pro
+- [ ] Waiting on user: confirm the HTML tool (file-4) is the existing app to port features from
+- [ ] Spec v3 Phase 2: 40-section navigation, breadcrumbs, global search, recent/favourites
 - [ ] 7. KP and Jaimini
 - [ ] 8. Panchanga
 - [ ] 9. Ashtakavarga, Shadbala, yogas

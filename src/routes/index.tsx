@@ -10,13 +10,13 @@ import { RASHIS } from "@/lib/astro/constants";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "జ్యోతిష దర్పణం — Telugu Vedic Astrology on Swiss Ephemeris" },
+      { title: "ఆస్ట్రోజ్యోతిష్ ప్రో — Telugu Vedic Astrology on Swiss Ephemeris" },
       {
         name: "description",
         content:
           "Calculate your Vedic birth chart in Telugu or English: Lagna, Nakshatra, Pada and planetary dignities from Swiss Ephemeris, with every value traceable.",
       },
-      { property: "og:title", content: "జ్యోతిష దర్పణం — Telugu Vedic Astrology" },
+      { property: "og:title", content: "ఆస్ట్రోజ్యోతిష్ ప్రో — Telugu Vedic Astrology" },
       {
         property: "og:description",
         content: "Vedic birth charts from real Swiss Ephemeris calculations, in Telugu and English.",

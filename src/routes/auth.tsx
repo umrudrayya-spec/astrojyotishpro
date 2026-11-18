@@ -15,9 +15,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "ప్రవేశం — జ్యోతిష దర్పణం" },
-      { name: "description", content: "Sign in or create your Jyotisha Darpanam account to save birth profiles and charts." },
-      { property: "og:title", content: "Sign in — Jyotisha Darpanam" },
+      { title: "ప్రవేశం — ఆస్ట్రోజ్యోతిష్ ప్రో" },
+      { name: "description", content: "Sign in or create your AstroJyotish Pro account to save birth profiles and charts." },
+      { property: "og:title", content: "Sign in — AstroJyotish Pro" },
       { property: "og:description", content: "Sign in to save birth profiles and calculate Vedic charts." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

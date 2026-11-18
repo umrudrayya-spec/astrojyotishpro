@@ -84,12 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "జ్యోతిష దర్పణం — Vedic Astrology" },
+      { title: "ఆస్ట్రోజ్యోతిష్ ప్రో — Vedic Astrology" },
       {
         name: "description",
         content: "Vedic astrology, KP, Jaimini and numerology platform built on Swiss Ephemeris calculations, in Telugu and English.",
       },
-      { property: "og:title", content: "జ్యోతిష దర్పణం — Vedic Astrology" },
+      { property: "og:title", content: "ఆస్ట్రోజ్యోతిష్ ప్రో — Vedic Astrology" },
       {
         property: "og:description",
         content: "Vedic astrology platform built on Swiss Ephemeris calculations, in Telugu and English.",

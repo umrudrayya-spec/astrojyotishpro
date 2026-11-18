@@ -4,7 +4,7 @@
 > project information, files, or instructions arrive. Never delete useful history; when a
 > requirement changes, update it and note what it replaced. Do not record assumptions as facts.
 
-_Last updated: 2026-11-18 06:20 UTC_
+_Last updated: 2026-11-18 06:25 UTC_
 
 ---
 
@@ -122,12 +122,39 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
 - Part 27: work autonomously, keep a continuation manifest (= `roadmap.md` + this file), run tests per subsystem.
 - v2 again recommends Next.js/Prisma/Redis/Docker — not possible on this platform (same as v1 note).
 
+## 3c. Spec v3 + existing HTML tool (received 2026-11-18 06:15, `file-3`, `file-4`)
+- **Spec v3** saved as `docs/specs/astrojyotish-pro-master-spec-v3.md` (40 sections, ~2930 lines). Latest
+  source of truth. Key new points vs v2:
+  - Phase 1 = **audit the existing project** first, keep an implementation inventory → done: `docs/AUDIT.md`.
+  - **Final objective: transform the project into "ASTROJYOTISH PRO"** → app renamed (Telugu
+    "ఆస్ట్రోజ్యోతిష్ ప్రో", English "AstroJyotish Pro") on 2026-11-18. Previous name: Jyotisha Darpanam.
+  - 40-item navigation (§2.1), breadcrumbs, recent charts, favourites, global search, deep links.
+  - Do **not** silently assume 12:00 for unknown birth time; disable/qualify Lagna-dependent results
+    (we use noon only as a labelled placeholder with warnings; Lagna/houses hidden; dasha + varga warned).
+  - Only list ayanamshas with documented, tested calculations (no "48 ayanamshas" marketing).
+  - Encyclopedia pages for 9 grahas, 12 rashis, 12 bhavas, 27 nakshatras; Avasthas, Pushkara, planetary war.
+  - Yoga results must be classified: confirmed / weakened / cancelled / conditional / not formed / insufficient data.
+  - Doshas as a separate engine; extra dashas Shoola, Sthira; transits with Vedha, double transit.
+  - Research laboratory: duplicate chart, change one setting, compare highlighted differences.
+  - Visual indicators ↑ ↓ ▫ with explained basis; English + Telugu + Hindi.
+  - Roadmap §38: 13 phases (Audit → Architecture → Astronomy → Core → Vargas → Strength/rules →
+    Predictive → Specialized → Life analysis → Numerology/Western → AI/Reports → Knowledge → Hardening).
+- **file-4** = standalone offline Telugu HTML astrology tool "విశ్వ జ్యోతిష్య మహా పీఠం" (4.4 MB), saved as
+  `docs/reference/vishwa-jyotishya-maha-peetham.html`. **Treated as the user's existing application to audit
+  (spec v3 §1); not yet confirmed by the user** — asked. Its features are the porting checklist in `docs/AUDIT.md` §4.
+  - Accuracy cross-check: its planets agree with our Swiss Ephemeris within 0.04′ and Lagna within 0.07′ on
+    5 dates (1900–2060); its 16 vargas match ours exactly. Limits: mean node only, Placidus only, no
+    historical DST, browser-only storage.
+
 ## 4. Errors & bugs to fix
 - 2026-11-18: User reported `src/hooks/use-mobile.tsx(4,35): error TS2686: .` — **Investigated:
   not a real error.** Line 4 of that file is blank, the message text is empty, and a full
   TypeScript check of the project passes with zero errors. No code change made.
 - 2026-11-18 (again, with spec v2 upload): same empty TS2686 message. Re-checked: line 4 blank,
   typecheck still clean. Not a real error; the message accompanies spec uploads.
+- 2026-11-18 06:15 (3rd time, with file-3/file-4): same empty message; typecheck clean. Not a real error.
+- Checked: G Venkatesh's Moon shows 16.91% of Mrigashira because the user's default ayanamsha is KP
+  (not Lahiri) — correct, not a bug.
 
 ## 5. Task status
 | Task | Status | Notes |
@@ -140,6 +167,9 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
 | Phase 2 Database & login | Done | Sign-up/sign-in flow not tested end-to-end (needs a real email confirmation) |
 | Phase 3 Astronomical engine | Done | Moshier ephemeris in use; Swiss data files option not in UI yet |
 | Read spec v2 and record it | Done | 2026-11-18, §3b |
+| Read spec v3 + HTML tool, audit (spec v3 Phase 1) | Done | `docs/AUDIT.md`; §3c |
+| Rename app to AstroJyotish Pro | Done | per spec v3 final objective |
+| Unknown-time warnings on dasha + vargas | Done | spec v3 §3.2 |
 | Phase 4 Core Parashari | In progress | Done now also: natural/functional nature, dispositors, Maraka, Badhaka, Arudha Padas. Left: Bhava Chalit, Argala, yoga/dosha rule engine |
 | Phase 5 Divisional charts | In progress | All 20 vargas + Vargottama done & tested. Left: varga analysis pages, strength, comparisons |
 | Phase 6 Dashas | In progress | Vimshottari to Prana done & tested. Left: other dasha systems, timeline chart |
@@ -163,7 +193,9 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
 2. Phase 5 rest: varga strength (Vimshopaka), D1–D9/D1–D10 comparison.
 3. Phase 6 rest: Yogini, Ashtottari (with eligibility), Chara/Narayana, etc.; dasha timeline graphic.
 4. Save calculated charts/metadata (+ result hash) to database when reports/AI need them.
-5. Waiting on user: product name (AstroJyotish Pro vs Jyotisha Darpanam).
+5. Waiting on user: confirm file-4 is their existing app whose features should be ported here
+   (keeping Swiss Ephemeris and this app's data). Then port in spec v3 §38 order, starting with
+   Phase 2 navigation (40 sections) and Phase 6 (Shadbala, Ashtakavarga, yogas/doshas).
 
 ## 7. Must NOT be changed / removed / implemented
 - Never rewrite the whole project when only a small change is needed.
@@ -194,7 +226,10 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
 | File | Purpose | Received |
 |------|---------|----------|
 | `docs/specs/vedic-astrology-master-spec.md` (uploaded as `file`) | Master feature spec v1 (32 sections, ~1450 lines) | 2026-11-18 |
-| `docs/specs/astrojyotish-pro-master-spec-v2.md` (uploaded as `file-2`) | Master spec v2 "AstroJyotish Pro" (28 parts, ~1700 lines). Latest; summary of differences in §3b | 2026-11-18 |
+| `docs/specs/astrojyotish-pro-master-spec-v2.md` (uploaded as `file-2`) | Master spec v2 "AstroJyotish Pro" (28 parts, ~1700 lines); differences in §3b | 2026-11-18 |
+| `docs/specs/astrojyotish-pro-master-spec-v3.md` (uploaded as `file-3`) | Master spec v3 (40 sections, ~2930 lines). **Latest**; audit-first; differences in §3c | 2026-11-18 |
+| `docs/reference/vishwa-jyotishya-maha-peetham.html` (uploaded as `file-4`) | Existing standalone Telugu HTML astrology tool; feature reference, audited | 2026-11-18 |
+| `docs/AUDIT.md` | Audit + implementation inventory (status per feature, accuracy cross-check) | created 2026-11-18 |
 
 ## 9b. Known limitations (honest status)
 - "KP New" ayanamsha is not built into Swiss Ephemeris — not offered yet.
@@ -216,3 +251,5 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
 - 2026-11-18 — Spec v2 received (file-2) and saved; empty TS2686 re-checked (no error). Built all 20
   vargas, Vimshottari to Prana, natural/functional nature, dispositors, Maraka, Badhaka, Arudha Padas;
   65 tests passing; verified on the chart page in the preview.
+- 2026-11-18 06:15 — Spec v3 + existing HTML tool received; audit written (`docs/AUDIT.md`), engines
+  cross-checked (agree < 5″), app renamed to AstroJyotish Pro, unknown-time warnings added.

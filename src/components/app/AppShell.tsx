@@ -55,7 +55,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         <LogoMark />
         <div className="leading-tight">
           <div className="font-display text-lg font-semibold text-sidebar-primary">{t("appName")}</div>
-          <div className="text-[11px] text-sidebar-foreground/60">Jyotisha Darpanam</div>
+          <div className="text-[11px] text-sidebar-foreground/60">AstroJyotish Pro</div>
         </div>
       </Link>
       <NavList {...(onNavigate ? { onNavigate } : {})} />

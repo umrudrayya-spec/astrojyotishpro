@@ -32,9 +32,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/_authenticated/profiles")({
   head: () => ({
     meta: [
-      { title: "జాతక వివరాలు — జ్యోతిష దర్పణం" },
+      { title: "జాతక వివరాలు — ఆస్ట్రోజ్యోతిష్ ప్రో" },
       { name: "description", content: "Manage saved birth profiles for yourself, family and clients." },
-      { property: "og:title", content: "Birth profiles — Jyotisha Darpanam" },
+      { property: "og:title", content: "Birth profiles — AstroJyotish Pro" },
       { property: "og:description", content: "Manage saved birth profiles." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

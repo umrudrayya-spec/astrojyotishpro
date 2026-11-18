@@ -10,9 +10,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/_authenticated/chart/$profileId")({
   head: () => ({
     meta: [
-      { title: "జన్మ కుండలి — జ్యోతిష దర్పణం" },
+      { title: "జన్మ కుండలి — ఆస్ట్రోజ్యోతిష్ ప్రో" },
       { name: "description", content: "Rashi (D1) birth chart with planetary positions, nakshatras, dignities and houses." },
-      { property: "og:title", content: "Birth chart — Jyotisha Darpanam" },
+      { property: "og:title", content: "Birth chart — AstroJyotish Pro" },
       { property: "og:description", content: "Rashi (D1) birth chart from Swiss Ephemeris." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

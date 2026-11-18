@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useState, type ReactNode } from "react";
-import { ChevronRight } from "lucide-react";
+import { AlertTriangle, ChevronRight } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -22,7 +22,17 @@ function useDateFormat(timeZone: string) {
   }, [timeZone]);
 }
 
-export function DashaPanel({ moonLongitude, birth, timeZone }: { moonLongitude: number; birth: Date; timeZone: string }) {
+export function DashaPanel({
+  moonLongitude,
+  birth,
+  timeZone,
+  timeKnown,
+}: {
+  moonLongitude: number;
+  birth: Date;
+  timeZone: string;
+  timeKnown: boolean;
+}) {
   const { t, lang } = useI18n();
   const [convention, setConvention] = useState<DashaYearConvention>("julian");
   const [open, setOpen] = useState<string[]>([]);
@@ -97,6 +107,12 @@ export function DashaPanel({ moonLongitude, birth, timeZone }: { moonLongitude: 
         </div>
       </div>
 
+      {!timeKnown && (
+        <div className="mx-5 mt-4 flex gap-2 rounded-xl border border-warning/40 bg-warning/10 p-3 text-sm">
+          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-warning" />
+          <span>{t("dashaTimeUnknown")}</span>
+        </div>
+      )}
       <div className="grid gap-4 px-5 py-4 text-sm md:grid-cols-3 tabular">
         <div>
           <div className="text-xs text-muted-foreground">{t("moonNakshatra")}</div>

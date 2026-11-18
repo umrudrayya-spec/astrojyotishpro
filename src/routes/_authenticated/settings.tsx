@@ -15,9 +15,9 @@ import { LANGS, useI18n, type Lang } from "@/lib/i18n";
 export const Route = createFileRoute("/_authenticated/settings")({
   head: () => ({
     meta: [
-      { title: "అమరికలు — జ్యోతిష దర్పణం" },
+      { title: "అమరికలు — ఆస్ట్రోజ్యోతిష్ ప్రో" },
       { name: "description", content: "Language, theme and default calculation conventions for your charts." },
-      { property: "og:title", content: "Settings — Jyotisha Darpanam" },
+      { property: "og:title", content: "Settings — AstroJyotish Pro" },
       { property: "og:description", content: "Language, theme and default calculation conventions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

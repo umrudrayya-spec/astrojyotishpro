@@ -8,9 +8,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/_authenticated/chart/")({
   head: () => ({
     meta: [
-      { title: "కుండలి ఎంపిక — జ్యోతిష దర్పణం" },
+      { title: "కుండలి ఎంపిక — ఆస్ట్రోజ్యోతిష్ ప్రో" },
       { name: "description", content: "Choose a saved birth profile to open its Vedic birth chart." },
-      { property: "og:title", content: "Choose a chart — Jyotisha Darpanam" },
+      { property: "og:title", content: "Choose a chart — AstroJyotish Pro" },
       { property: "og:description", content: "Choose a saved birth profile to open its chart." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

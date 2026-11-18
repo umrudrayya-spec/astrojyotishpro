@@ -9,7 +9,7 @@ export const LANGS: { id: Lang; label: string }[] = [
 const STORAGE_KEY = "jyotish.lang";
 
 const dict = {
-  appName: { te: "జ్యోతిష దర్పణం", en: "Jyotisha Darpanam" },
+  appName: { te: "ఆస్ట్రోజ్యోతిష్ ప్రో", en: "AstroJyotish Pro" },
   tagline: {
     te: "నిజమైన ఖగోళ గణనలపై ఆధారపడిన వైదిక జ్యోతిష వేదిక",
     en: "A Vedic astrology platform built on real astronomical calculation",
@@ -254,6 +254,14 @@ const dict = {
     en: "Dasha dates are calculated from the Moon's exact position in its nakshatra; they are calculations, not predictions. An inaccurate birth time shifts every date.",
   },
   datesInTz: { te: "తేదీలు జన్మ స్థల కాల మండలంలో", en: "Dates shown in the birth place time zone" },
+  dashaTimeUnknown: {
+    te: "జన్మ సమయం తెలియదు: చంద్రుడు రోజుకు సుమారు 13° కదులుతాడు, కాబట్టి దశా శేషం, అన్ని దశా తేదీలు నిర్ధారించబడలేదు (మధ్యాహ్నం 12:00 ఆధారంగా చూపబడ్డాయి). వీటిపై ఆధారపడకండి.",
+    en: "Birth time unknown: the Moon moves about 13° a day, so the dasha balance and every dasha date are unconfirmed (shown for 12:00 noon). Do not rely on them.",
+  },
+  vargaTimeUnknown: {
+    te: "జన్మ సమయం తెలియనందున వర్గ లగ్నం చూపబడలేదు; చంద్రుడు మరియు ఉన్నత వర్గాలలో (D9 పైన) గ్రహ రాశులు మారవచ్చు.",
+    en: "Birth time unknown: the varga Lagna is hidden, and the Moon and planets in higher vargas (above D9) may change sign.",
+  },
   notFound: { te: "జాతకం కనుగొనబడలేదు", en: "Profile not found" },
 } as const satisfies Record<string, Record<Lang, string>>;
 
