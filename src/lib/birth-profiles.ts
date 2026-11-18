@@ -1,5 +1,4 @@
 import { queryOptions } from "@tanstack/react-query";
-import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -7,26 +6,8 @@ export type BirthProfile = Database["public"]["Tables"]["birth_profiles"]["Row"]
 export type BirthProfileInsert = Database["public"]["Tables"]["birth_profiles"]["Insert"];
 export type UserProfile = Database["public"]["Tables"]["profiles"]["Row"];
 
-export const RELATIONS = ["self", "spouse", "child", "parent", "sibling", "friend", "client", "other"] as const;
-
-export const birthProfileSchema = z.object({
-  name: z.string().trim().min(1).max(120),
-  gender: z.enum(["male", "female", "other"]).nullable(),
-  relation: z.enum(RELATIONS),
-  birth_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  birth_time: z
-    .string()
-    .regex(/^\d{2}:\d{2}(:\d{2})?$/)
-    .nullable(),
-  time_known: z.boolean(),
-  place_name: z.string().trim().min(1).max(200),
-  latitude: z.number().min(-90).max(90),
-  longitude: z.number().min(-180).max(180),
-  timezone: z.string().min(1).max(64),
-  utc_offset_minutes: z.number().int().min(-840).max(840),
-  notes: z.string().max(2000).nullable(),
-});
-export type BirthProfileForm = z.infer<typeof birthProfileSchema>;
+export { RELATIONS, birthProfileSchema, type BirthProfileForm } from "@/lib/birth-profiles-schema";
+import { birthProfileSchema, RELATIONS, type BirthProfileForm } from "@/lib/birth-profiles-schema";
 
 export const birthProfilesQuery = () =>
   queryOptions({
@@ -35,6 +16,7 @@ export const birthProfilesQuery = () =>
       const { data, error } = await supabase
         .from("birth_profiles")
         .select("*")
+        .order("is_favorite", { ascending: false })
         .order("created_at", { ascending: false });
       if (error) throw error;
       return data;
@@ -79,6 +61,26 @@ export async function saveBirthProfile(form: BirthProfileForm, id?: string) {
     .single();
   if (error) throw error;
   return data;
+}
+
+export async function setProfileFavorite(id: string, isFavorite: boolean) {
+  const { error } = await supabase.from("birth_profiles").update({ is_favorite: isFavorite }).eq("id", id);
+  if (error) throw error;
+}
+
+export async function setProfileArchived(id: string, archived: boolean) {
+  const { error } = await supabase
+    .from("birth_profiles")
+    .update({ archived_at: archived ? new Date().toISOString() : null })
+    .eq("id", id);
+  if (error) throw error;
+}
+
+/** Case-insensitive match on name, place and notes. */
+export function matchesProfile(p: Pick<BirthProfile, "name" | "place_name" | "notes">, q: string) {
+  const needle = q.trim().toLowerCase();
+  if (!needle) return true;
+  return [p.name, p.place_name, p.notes ?? ""].some((f) => f.toLowerCase().includes(needle));
 }
 
 export async function deleteBirthProfile(id: string) {

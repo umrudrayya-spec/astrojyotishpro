@@ -39,7 +39,9 @@ function ChartIndex() {
         </div>
       ) : (
         <ul className="divide-y rounded-2xl border bg-card shadow-card">
-          {profiles.map((p) => (
+          {profiles
+            .filter((p) => !p.archived_at)
+            .map((p) => (
             <li key={p.id}>
               <Link
                 to="/chart/$profileId"

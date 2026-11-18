@@ -8,7 +8,8 @@
 - [~] 6. Dasha systems — done: Vimshottari to Prana. Pending: Yogini, Ashtottari, Chara, Narayana, Kalachakra, others; timeline graphic
 - [x] Spec v3 Phase 1 audit (`docs/AUDIT.md`), rename to AstroJyotish Pro
 - [ ] Waiting on user: confirm the HTML tool (file-4) is the existing app to port features from
-- [ ] Spec v3 Phase 2: 40-section navigation, breadcrumbs, global search, recent/favourites
+- [x] Stage 1 / spec v3 Phase 2: 40-section sidebar, breadcrumbs, Ctrl+K search, recent charts, profile search/favourite/archive/CSV
+- [ ] Stage 2: Bhava Chalit, Argala, Rashi drishti, planetary war, Graha Maitri view, Avasthas, Pushkara/Mrityu Bhaga/Gandanta, varga comparison, Vimshopaka
 - [ ] 7. KP and Jaimini
 - [ ] 8. Panchanga
 - [ ] 9. Ashtakavarga, Shadbala, yogas

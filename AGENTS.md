@@ -42,3 +42,5 @@ use the editor.
 - Ephemeris tests run in the node vitest environment with a fetch stub that reads the local `.wasm` file. Why: the WASM loader uses fetch.
 - No AI-generated images; visuals are SVG/Tailwind/Lucide only. Why: user requirement.
 - `docs/AUDIT.md` is the feature inventory (status per feature in this app vs the reference HTML tool in `docs/reference/`); update its status column when a feature lands. Why: spec v3 requires a maintained implementation inventory.
+
+- Navigation sections live in `src/lib/nav.ts` (spec v3 §2.1); a section gets a `to` only when its route exists, otherwise it is listed as "Soon" and is not a link. Why: no fake or disconnected navigation (spec v3 §0).

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { CircleDot, Loader2, Plus } from "lucide-react";
+import { CircleDot, History, Loader2, Plus, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { birthProfilesQuery, userProfileQuery } from "@/lib/birth-profiles";
 import { OUTER_PLANETS } from "@/lib/astro/constants";
@@ -10,6 +10,7 @@ import { formatDms } from "@/lib/astro/parashari";
 import { AYANAMSHAS, DEFAULT_SETTINGS, isAyanamshaId, type CalcSettings } from "@/lib/astro/settings";
 import { useChart } from "@/lib/astro/use-chart";
 import { useI18n } from "@/lib/i18n";
+import { useRecentCharts } from "@/lib/recent";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -35,6 +36,8 @@ function Dashboard() {
   const { t, lang } = useI18n();
   const { data: profiles } = useSuspenseQuery(birthProfilesQuery());
   const { data: me } = useSuspenseQuery(userProfileQuery());
+  const recent = useRecentCharts();
+  const active = profiles.filter((p) => !p.archived_at);
   const [now] = useState(() => new Date());
   const settings: CalcSettings = useMemo(
     () => ({
@@ -55,6 +58,23 @@ function Dashboard() {
         <div className="kolam-border mt-4 w-24" />
       </section>
 
+      {recent.length > 0 && (
+        <section className="rounded-2xl border bg-card p-5 shadow-card">
+          <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold">
+            <History className="size-4 text-primary" /> {t("recentCharts")}
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {recent.map((r) => (
+              <Button key={r.id} asChild size="sm" variant="outline">
+                <Link to="/chart/$profileId" params={{ profileId: r.id }}>
+                  <CircleDot /> {r.name}
+                </Link>
+              </Button>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
         <div className="rounded-2xl border bg-card p-5 shadow-card">
           <div className="mb-4 flex items-center justify-between">
@@ -65,14 +85,17 @@ function Dashboard() {
               </Link>
             </Button>
           </div>
-          {profiles.length === 0 ? (
+          {active.length === 0 ? (
             <p className="text-sm text-muted-foreground">{t("noProfiles")}</p>
           ) : (
             <ul className="divide-y">
-              {profiles.slice(0, 6).map((p) => (
+              {active.slice(0, 6).map((p) => (
                 <li key={p.id} className="flex items-center justify-between gap-3 py-3">
                   <div className="min-w-0">
-                    <div className="truncate font-medium">{p.name}</div>
+                    <div className="flex items-center gap-1.5 truncate font-medium">
+                      {p.is_favorite && <Star className="size-3.5 shrink-0 fill-primary text-primary" aria-label={t("filterFavorites")} />}
+                      {p.name}
+                    </div>
                     <div className="truncate text-xs text-muted-foreground tabular">
                       {p.birth_date} · {p.place_name}
                     </div>

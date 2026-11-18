@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ArrowLeft } from "lucide-react";
 import { ChartView } from "@/components/chart/ChartView";
 import { birthProfileQuery, userProfileQuery } from "@/lib/birth-profiles";
 import { localToUtc, parseDateTime } from "@/lib/astro/time";
 import { useI18n } from "@/lib/i18n";
+import { recordRecentChart } from "@/lib/recent";
 
 export const Route = createFileRoute("/_authenticated/chart/$profileId")({
   head: () => ({
@@ -39,6 +40,10 @@ function ChartPage() {
         : null,
     [profile],
   );
+
+  useEffect(() => {
+    if (profile) recordRecentChart(profile.id, profile.name);
+  }, [profile]);
 
   if (!profile || !utc) {
     return (

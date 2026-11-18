@@ -16,11 +16,13 @@ export type Database = {
     Tables: {
       birth_profiles: {
         Row: {
+          archived_at: string | null
           birth_date: string
           birth_time: string | null
           created_at: string
           gender: string | null
           id: string
+          is_favorite: boolean
           latitude: number
           longitude: number
           name: string
@@ -34,11 +36,13 @@ export type Database = {
           utc_offset_minutes: number
         }
         Insert: {
+          archived_at?: string | null
           birth_date: string
           birth_time?: string | null
           created_at?: string
           gender?: string | null
           id?: string
+          is_favorite?: boolean
           latitude: number
           longitude: number
           name: string
@@ -52,11 +56,13 @@ export type Database = {
           utc_offset_minutes: number
         }
         Update: {
+          archived_at?: string | null
           birth_date?: string
           birth_time?: string | null
           created_at?: string
           gender?: string | null
           id?: string
+          is_favorite?: boolean
           latitude?: number
           longitude?: number
           name?: string

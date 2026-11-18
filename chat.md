@@ -257,3 +257,10 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
   not saved again. TS2686 in `src/hooks/use-mobile.tsx` diagnosed: line 4 is blank, the file already
   imports React as a module, and `tsgo -b --noEmit` passes with zero errors — no code change needed.
   Still awaiting user answer: should file-4's features be ported into this app?
+- 2026-11-18 06:24 — file-6 = the "what is missing" plan (11 stages) sent back as an instruction; treated
+  as approval to build in that order. Stage 1 done: sidebar with all 40 spec sections in 9 expandable
+  groups (built ones link, others marked "Soon"), breadcrumbs, Ctrl/⌘+K global search (sections,
+  profiles, recent charts), recently opened charts (this device) on dashboard, profile search,
+  favourite (sorted first), archive/restore (hidden from dashboard/chart picker), CSV import/export
+  (blank offset resolved from IANA history). DB: birth_profiles.is_favorite, archived_at. 75 tests pass;
+  checked signed in on the preview. Next: Stage 2 (see roadmap.md). Still open: port file-4 features?

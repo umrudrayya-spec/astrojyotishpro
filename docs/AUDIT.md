@@ -53,7 +53,7 @@ published charts) is still needed (spec v3 §36.4).
 | Feature | A (this app) | B (HTML tool) | Action / correction | Status in A |
 |---|---|---|---|---|
 | Accounts, roles, private profiles | yes | no (local only) | keep A | V (sign-up flow not tested end-to-end) |
-| Birth profile CRUD, import/export | yes | local JSON/CSV | add CSV, archive, favourite, search | P |
+| Birth profile CRUD, import/export | yes (+ CSV, archive, favourite, search) | local JSON/CSV | — | V |
 | Historical time zones/DST | yes (IANA) | no | keep A | V |
 | Offline city list | online geocoder | 1.2 MB offline list | consider fallback | P |
 | Ayanamsha registry | 10 | many names | add KP New only with documented definition; custom offset | P |
@@ -83,7 +83,7 @@ published charts) is still needed (spec v3 §36.4).
 | Reports / PDF | no | print-to-PDF studio | Phase 11 | M |
 | Encyclopedia / Sanatana library | no | short tables | Phase 12 | M |
 | Hindi UI | no | no | add language | M |
-| Global search, breadcrumbs, 40-item navigation | no | section search | Phase 2 | M |
+| Global search, breadcrumbs, 40-item navigation, recent charts | yes (unbuilt sections shown as "Soon", not linked) | section search | add favourite modules, recently viewed topics when topic pages exist | P |
 | Admin area | roles only | no | Phase 13 | M |
 
 ## 5. Unsupported / changed by platform
