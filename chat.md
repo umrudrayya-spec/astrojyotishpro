@@ -278,3 +278,10 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
   Kuja 2nd-house is a setting) and transits (`gochara.ts`: transit table for any date, lifetime Saturn
   phases; retrograde dips < 900 days stay one Sade Sati). Both on the chart page. 105 tests pass;
   Saturn ingress dates match 2023-01-17 / 2025-03-29 (Lahiri). Next: Shadbala, KP, matching, AI, reports.
+- 2026-11-18 06:55 — file-9 = identical to spec v3 (`docs/specs/astrojyotish-pro-master-spec-v3.md`); not saved
+  again; TS2686 header again not a real error (typecheck clean). Continued: KP engine (`kp.ts`: sign/star/
+  sub/sub-sub lords, 249-sub table, Placidus house placement, 4-level significators, houses per planet) and
+  KP panel on the chart page (KP ayanamsha by default or the chart's; always Placidus). Sidebar "KP" now
+  links to the chart. ALGORITHM_VERSION → astro-core-1.3.0. 112 tests pass; checked signed in on the
+  preview (star/sub lords spot-checked by hand). Pending KP: Ruling Planets, Rahu/Ketu agency, horary 1–249.
+  Next: Shadbala, matching, AI astrologer, reports.

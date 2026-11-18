@@ -37,7 +37,7 @@ export interface RawChart {
   };
 }
 
-export const ALGORITHM_VERSION = "astro-core-1.2.0";
+export const ALGORITHM_VERSION = "astro-core-1.3.0";
 
 const PLANET_CODES: Record<Exclude<GrahaId, "rahu" | "ketu">, number> = {
   sun: 0,

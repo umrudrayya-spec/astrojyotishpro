@@ -72,7 +72,7 @@ published charts) is still needed (spec v3 §36.4).
 | Yoga & Dosha rule engine | 23 rules with 6 statuses, factors and source (`yogas.ts`): Mahapurusha ×5, Gajakesari, Budhaditya, Chandra-Mangala, Sunapha/Anapha/Durudhura, Kemadruma (+bhanga), Adhi, Raja, Dhana, Viparita ×3, Neecha Bhanga, Kuja (2nd-house setting), Kala Sarpa, Grahana, Guru-Chandala | basic list | add Nabhasa, Parivartana yogas, Dhana by D2/D11, more cancellation rules | P |
 | Gochara, Sade Sati, ingress, double transit | transit table (from Moon/Lagna, any date), lifetime Saturn phases (Sade Sati, 4th, 8th) (`gochara.ts`); Saturn ingresses checked vs 2023/2025 dates | yes | add Jupiter+Saturn double transit, Vedha, ingress lists for all grahas | P |
 | Jaimini (Karakas 7/8, Karakamsha, Argala, Chara/Narayana) | 7/8 Karakas (setting), Karakamsha, Rashi drishti, Argala on Lagna, Arudha (`jaimini.ts`) | 7 Karakas, Chara | add Chara/Narayana dasha, Jaimini yogas, Argala per house | P |
-| KP (cusps, sub/sub-sub, significators, RP, horary 1–249) | no | most except 1–249 | implement | M |
+| KP (cusps, sub/sub-sub, significators, RP, horary 1–249) | **partial**: Placidus cusps + planets with star/sub/sub-sub lords, 4-level significators, 249-sub table (chart page). Pending: Ruling Planets, Rahu/Ketu agency, horary 1–249 chart | most except 1–249 | finish RP + horary | M |
 | Panchanga, Choghadiya, Rahu/Yama/Gulika, sunrise | yes — `/panchanga`, `panchanga.ts`, sunrise rule is a setting; tested on Ugadi 2024 | yes | add moonrise/moonset, Hindu month/samvatsara, Dur muhurta, Varjyam | P |
 | Muhurta, Prashna, Varshaphala, rectification | no | basic | implement | M |
 | Matching (Ashtakoota, Dashakoota, Kuja) | no | yes | implement | M |

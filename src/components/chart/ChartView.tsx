@@ -31,6 +31,7 @@ import { DashaPanel } from "@/components/chart/DashaPanel";
 import { NaturePanel } from "@/components/chart/NaturePanel";
 import { AshtakavargaPanel } from "@/components/chart/AshtakavargaPanel";
 import { JaiminiPanel } from "@/components/chart/JaiminiPanel";
+import { KpPanel } from "@/components/chart/KpPanel";
 import { YoginiPanel } from "@/components/chart/YoginiPanel";
 import { YogaPanel } from "@/components/chart/YogaPanel";
 import { TransitPanel } from "@/components/chart/TransitPanel";
@@ -415,6 +416,8 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
           <AshtakavargaPanel chart={chart} timeKnown={profile.time_known} />
 
           <JaiminiPanel chart={chart} timeKnown={profile.time_known} />
+
+          <KpPanel input={input} settings={settings} timeKnown={profile.time_known} />
 
           <TransitPanel chart={chart} birth={utc} settings={settings} timeZone={profile.timezone} timeKnown={profile.time_known} />
 

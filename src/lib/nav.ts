@@ -100,7 +100,7 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { id: "parashari", label: "secParashari", icon: Compass, to: "/chart", keywords: "drishti aspects maraka badhaka arudha" },
       { id: "jaimini", label: "secJaimini", icon: Waypoints, to: "/chart", keywords: "karaka chara atmakaraka argala" },
-      { id: "kp", label: "secKp", icon: Hash, keywords: "krishnamurti sub lord" },
+      { id: "kp", label: "secKp", icon: Hash, to: "/chart", keywords: "krishnamurti sub lord" },
     ],
   },
   {

@@ -10,7 +10,7 @@
 - [ ] Waiting on user: confirm the HTML tool (file-4) is the existing app to port features from
 - [x] Stage 1 / spec v3 Phase 2: 40-section sidebar, breadcrumbs, Ctrl+K search, recent charts, profile search/favourite/archive/CSV
 - [ ] Stage 2: Bhava Chalit, Argala, Rashi drishti, planetary war, Graha Maitri view, Avasthas, Pushkara/Mrityu Bhaga/Gandanta, varga comparison, Vimshopaka
-- [~] 7. KP and Jaimini — done: Chara Karakas 7/8, Karakamsha, Rashi drishti, Argala. Pending: KP entirely, Chara/Narayana dasha
+- [~] 7. KP and Jaimini — done: Chara Karakas 7/8, Karakamsha, Rashi drishti, Argala; KP cusps/planets with star-sub-sub-sub lords, 4-level significators, 249 subs. Pending: KP Ruling Planets, Rahu/Ketu agency, KP horary 1–249, Chara/Narayana dasha
 - [~] 8. Panchanga — done: tithi/vara/nakshatra/yoga/karana with end times, sunrise/sunset, Rahu/Yama/Gulika, Abhijit, Choghadiya, Hora. Pending: moonrise, month/samvatsara, Varjyam/Durmuhurta
 - [~] 9. Ashtakavarga, Shadbala, yogas — done: BAV/SAV + Trikona Shodhana. Yoga/dosha engine (23 rules). Pending: Ekadhipatya, Pinda, Shadbala, more yogas
 - [ ] 10. Numerology
