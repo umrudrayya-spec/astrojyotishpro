@@ -1,0 +1,22 @@
+# Roadmap (spec §32 order) — details in chat.md
+
+- [x] 1. Project foundation (design system, Telugu/English, app shell)
+- [x] 2. Database & authentication (profiles, roles, birth profiles; email + Google + Lovable sign-in)
+- [x] 3. Astronomical engine (Swiss Ephemeris WASM, ayanamsha library, houses, nodes)
+- [~] 4. Core Parashari engine — done: sign/nakshatra/pada, dignity (compound), combustion, retro, lordship, graha drishti, conjunctions, parivartana. Pending: functional benefic/malefic, dispositor chains, Bhava Chalit, Arudha, Argala, Maraka/Badhaka, yogas & doshas
+- [ ] 5. Divisional charts D1–D60
+- [ ] 6. Dasha systems (Vimshottari first)
+- [ ] 7. KP and Jaimini
+- [ ] 8. Panchanga
+- [ ] 9. Ashtakavarga, Shadbala, yogas
+- [ ] 10. Numerology
+- [ ] 11. Western astrology
+- [ ] 12. Predictive analysis / transits
+- [ ] 13. Matchmaking & Prashna
+- [ ] 14. Muhurta
+- [ ] 15. AI astrologer (built-in AI + optional user Gemini key)
+- [ ] 16. Knowledge library
+- [ ] 17. Chart visualizations (East Indian, Western wheel, PNG/PDF export)
+- [ ] 18. Reports (Telugu + English PDF)
+- [ ] 19. Admin & subscription
+- [ ] 20. Testing, security, deployment docs (.env.example, API docs, ephemeris licensing)
