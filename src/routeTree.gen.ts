@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedMatchingRouteImport } from './routes/_authenticated/matching'
 import { Route as AuthenticatedPanchangaRouteImport } from './routes/_authenticated/panchanga'
 import { Route as AuthenticatedProfilesRouteImport } from './routes/_authenticated/profiles'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -42,6 +43,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMatchingRoute = AuthenticatedMatchingRouteImport.update({
+  id: '/matching',
+  path: '/matching',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPanchangaRoute = AuthenticatedPanchangaRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/matching': typeof AuthenticatedMatchingRoute
   '/panchanga': typeof AuthenticatedPanchangaRoute
   '/profiles': typeof AuthenticatedProfilesRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/matching': typeof AuthenticatedMatchingRoute
   '/panchanga': typeof AuthenticatedPanchangaRoute
   '/profiles': typeof AuthenticatedProfilesRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/matching': typeof AuthenticatedMatchingRoute
   '/_authenticated/panchanga': typeof AuthenticatedPanchangaRoute
   '/_authenticated/profiles': typeof AuthenticatedProfilesRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/dashboard'
+    | '/matching'
     | '/panchanga'
     | '/profiles'
     | '/settings'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/dashboard'
+    | '/matching'
     | '/panchanga'
     | '/profiles'
     | '/settings'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/_authenticated/matching'
     | '/_authenticated/panchanga'
     | '/_authenticated/profiles'
     | '/_authenticated/settings'
@@ -187,6 +199,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/matching': {
+      id: '/_authenticated/matching'
+      path: '/matching'
+      fullPath: '/matching'
+      preLoaderRoute: typeof AuthenticatedMatchingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/panchanga': {
       id: '/_authenticated/panchanga'
       path: '/panchanga'
@@ -227,6 +246,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMatchingRoute: typeof AuthenticatedMatchingRoute
   AuthenticatedPanchangaRoute: typeof AuthenticatedPanchangaRoute
   AuthenticatedProfilesRoute: typeof AuthenticatedProfilesRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
@@ -236,6 +256,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMatchingRoute: AuthenticatedMatchingRoute,
   AuthenticatedPanchangaRoute: AuthenticatedPanchangaRoute,
   AuthenticatedProfilesRoute: AuthenticatedProfilesRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,

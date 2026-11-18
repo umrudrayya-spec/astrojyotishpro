@@ -285,3 +285,11 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
   links to the chart. ALGORITHM_VERSION → astro-core-1.3.0. 112 tests pass; checked signed in on the
   preview (star/sub lords spot-checked by hand). Pending KP: Ruling Planets, Rahu/Ketu agency, horary 1–249.
   Next: Shadbala, matching, AI astrologer, reports.
+- 2026-11-18 07:05 — file-10…14 = re-uploads of spec v1, final-completion prompt, the missing-features
+  plan, spec v3 and spec v2 (all already in `docs/specs/` or the plan); not saved again; TS2686 again not
+  real. Continued: Ashtakoota matching (`matching.ts` + `matching-names.ts`, page `/matching`, sidebar
+  "Compatibility" now links). Documented choices: Vashya = Muhurta Chintamani sign list; Gana same 6,
+  D–M 5, D–R 1, M–R 0; standard 14-animal Yoni matrix. Unknown birth time → warns if the Moon changed
+  nakshatra/sign that day (noon used). Cancellations/Kuja comparison not applied yet. 7 new tests;
+  page checked in the preview with a pretend second profile (user has only one saved profile; nothing
+  written to the database); scores hand-verified (12.5/36 sample). Next: Shadbala, Dashakoota, AI, reports.

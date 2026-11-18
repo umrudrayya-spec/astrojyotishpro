@@ -16,7 +16,7 @@
 - [ ] 10. Numerology
 - [ ] 11. Western astrology
 - [~] 12. Predictive analysis / transits — done: transit table, Sade Sati/4th/8th Saturn over life. Pending: double transit, Vedha, dasha-transit correlation
-- [ ] 13. Matchmaking & Prashna
+- [~] 13. Matchmaking & Prashna — done: Ashtakoota 36 page. Pending: Dashakoota, Nadi/Bhakoot cancellations, Kuja comparison, Prashna
 - [ ] 14. Muhurta
 - [ ] 15. AI astrologer (built-in AI + optional user Gemini key)
 - [ ] 16. Knowledge library

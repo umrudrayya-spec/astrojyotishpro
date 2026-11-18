@@ -75,7 +75,7 @@ published charts) is still needed (spec v3 §36.4).
 | KP (cusps, sub/sub-sub, significators, RP, horary 1–249) | **partial**: Placidus cusps + planets with star/sub/sub-sub lords, 4-level significators, 249-sub table (chart page). Pending: Ruling Planets, Rahu/Ketu agency, horary 1–249 chart | most except 1–249 | finish RP + horary | M |
 | Panchanga, Choghadiya, Rahu/Yama/Gulika, sunrise | yes — `/panchanga`, `panchanga.ts`, sunrise rule is a setting; tested on Ugadi 2024 | yes | add moonrise/moonset, Hindu month/samvatsara, Dur muhurta, Varjyam | P |
 | Muhurta, Prashna, Varshaphala, rectification | no | basic | implement | M |
-| Matching (Ashtakoota, Dashakoota, Kuja) | no | yes | implement | M |
+| Matching (Ashtakoota, Dashakoota, Kuja) | **partial**: Ashtakoota 36 on `/matching` (two saved profiles, ayanamsha choice, unknown-time Moon-shift warning, Nadi/Bhakoot dosha flags). Pending: Dashakoota, dosha cancellations, Kuja comparison | yes | finish | M |
 | Numerology (Vedic/Chaldean/Pythagorean/Lo Shu) | no | basic + yantras | implement | M |
 | Western module | no | no | implement | M |
 | Remedies, gemstones, Rudraksha, Japa, Lal Kitab, Vastu, Vrata calendar | no | yes | port as clearly-labelled traditional content | M |

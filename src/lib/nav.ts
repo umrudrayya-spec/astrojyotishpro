@@ -41,7 +41,7 @@ import {
 import type { DictKey } from "@/lib/i18n";
 
 /** Routes that exist today. A section with `to` is a real link; one without is shown as "coming". */
-export type NavPath = "/dashboard" | "/profiles" | "/chart" | "/panchanga" | "/settings";
+export type NavPath = "/dashboard" | "/profiles" | "/chart" | "/panchanga" | "/matching" | "/settings";
 
 export interface NavItem {
   id: string;
@@ -124,7 +124,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { id: "muhurta", label: "secMuhurta", icon: Clock },
       { id: "prashna", label: "secPrashna", icon: HelpCircle, keywords: "horary" },
       { id: "rectification", label: "secRectification", icon: Timer },
-      { id: "compatibility", label: "secCompatibility", icon: Users, keywords: "matching ashtakoota guna" },
+      { id: "compatibility", label: "secCompatibility", icon: Users, to: "/matching", keywords: "matching ashtakoota guna" },
       { id: "numerology", label: "secNumerology", icon: Hash },
       { id: "western", label: "secWestern", icon: Globe },
     ],
