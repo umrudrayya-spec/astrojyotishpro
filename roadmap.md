@@ -3,9 +3,10 @@
 - [x] 1. Project foundation (design system, Telugu/English, app shell)
 - [x] 2. Database & authentication (profiles, roles, birth profiles; email + Google + Lovable sign-in)
 - [x] 3. Astronomical engine (Swiss Ephemeris WASM, ayanamsha library, houses, nodes)
-- [~] 4. Core Parashari engine — done: sign/nakshatra/pada, dignity (compound), combustion, retro, lordship, graha drishti, conjunctions, parivartana. Pending: functional benefic/malefic, dispositor chains, Bhava Chalit, Arudha, Argala, Maraka/Badhaka, yogas & doshas
-- [ ] 5. Divisional charts D1–D60
-- [ ] 6. Dasha systems (Vimshottari first)
+- [~] 4. Core Parashari engine — done: sign/nakshatra/pada, dignity (compound), combustion, retro, lordship, graha drishti, conjunctions, parivartana, natural/functional nature, dispositors, Maraka/Badhaka, Arudha Padas. Pending: Bhava Chalit, Argala, yoga & dosha rule engine
+- [~] 5. Divisional charts D1–D60 — done: all 20 vargas, Vargottama. Pending: varga strength, comparisons, analysis pages
+- [~] 6. Dasha systems — done: Vimshottari to Prana. Pending: Yogini, Ashtottari, Chara, Narayana, Kalachakra, others; timeline graphic
+- [ ] Waiting on user: product name (AstroJyotish Pro vs Jyotisha Darpanam)
 - [ ] 7. KP and Jaimini
 - [ ] 8. Panchanga
 - [ ] 9. Ashtakavarga, Shadbala, yogas

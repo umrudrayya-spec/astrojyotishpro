@@ -4,7 +4,7 @@
 > project information, files, or instructions arrive. Never delete useful history; when a
 > requirement changes, update it and note what it replaced. Do not record assumptions as facts.
 
-_Last updated: 2026-11-18 06:10 UTC_
+_Last updated: 2026-11-18 06:20 UTC_
 
 ---
 
@@ -49,7 +49,19 @@ _Last updated: 2026-11-18 06:10 UTC_
 - **Tests (28 passing):** `src/lib/astro/*.test.ts` — sign/nakshatra boundaries, dignities, combustion,
   aspects, historical time zones (India 1943 +06:30, US DST, leap day), Swiss Ephemeris checks
   (Lahiri at J2000 = 23.857°, Sun J2000, sidereal = tropical − ayanamsha, Ketu opposite Rahu).
-- Full spec saved in repo: `docs/specs/vedic-astrology-master-spec.md`.
+- **Divisional charts (2026-11-18, v2 turn):** `src/lib/astro/varga.ts` — D1, D2, D3, D4, D5, D6, D7, D8, D9,
+  D10, D11, D12, D16, D20, D24, D27, D30, D40, D45, D60, each with its own traditional rule (BPHS for the
+  Shodashavarga; D5/D6/D8/D11 marked "later convention"). Chart page has a D1–D60 picker, shows the
+  method/source per varga, varga degrees, Navamsha column + Vargottama badge in the planet table.
+- **Vimshottari Dasha:** `src/lib/astro/dasha.ts` — birth balance from Moon's exact nakshatra position,
+  Mahadasha → Antardasha → Pratyantardasha → Sookshma → Prana, running periods today, expandable tree,
+  dasha-year setting (365.25 / 365.2422 / 360 days). Dates shown in the birth place's time zone.
+- **More Parashari rules:** `src/lib/astro/bhava.ts` — natural benefic/malefic (waxing Moon, Mercury by
+  association), functional nature per Lagna incl. Yogakaraka (BPHS ch. 34 summarised rule set v1),
+  dispositor chains + final dispositor, Maraka lords, Badhaka, all 12 Arudha Padas (AL, UL).
+- Algorithm version bumped to `astro-core-1.1.0`. **Tests: 65 passing** (6 files).
+- Full spec saved in repo: `docs/specs/vedic-astrology-master-spec.md` (v1) and
+  `docs/specs/astrojyotish-pro-master-spec-v2.md` (v2, latest).
 - Phase roadmap: `roadmap.md`. Technical rules: `AGENTS.md`.
 
 ## 3. Requested changes / feature scope (summary of spec — see spec file for full lists)
@@ -79,10 +91,43 @@ _Last updated: 2026-11-18 06:10 UTC_
 | 28–29 | Admin panel; Subscriptions | Subscriptions optional, payments not required during development |
 | 30 | Deliverables | .env.example, API docs, schema, install/deploy docs, Gemini + ephemeris licensing docs |
 
+## 3b. Spec v2 (received 2026-11-18, `docs/specs/astrojyotish-pro-master-spec-v2.md`) — latest source of truth
+Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
+- Product name in v2: **"AstroJyotish Pro"** (app currently named "Jyotisha Darpanam") — **asked user which to use; not changed yet.**
+- Languages: Telugu, English, **Hindi**, Sanskrit terminology (v1 also listed Tamil/Kannada/Malayalam).
+- Profiles: add country/state/city, birth-time accuracy, DST info, archive, favorite, search, compare,
+  profile history, optional profile image; relations incl. relatives/custom. Account deletion.
+- Settings saved with every calculation; changing a setting must recalculate (already the case).
+- Ayanamsha manager: show value, epoch/method, source, compatibility; KP New; user-defined custom offset.
+- Ephemeris extras: topocentric, stationary periods, sunrise/sunset/moonrise/moonset, transits.
+- Calculation record: input data, UTC, coords, versions, timestamp, **result hash**.
+- Parashari: Bhava Chalit, Bhava Madhya, Bhavat Bhavam, Maraka, Badhaka; yoga rule engine with
+  formula/exceptions/cancellation/source per rule, configurable per tradition.
+- Varga: dedicated analysis pages per varga, varga strength, D1–D9 / D1–D10 comparison.
+- Dashas: Yogini, Chara, Narayana, Kalachakra, Ashtottari, Shodashottari, Panchottari, Dwisaptati Sama,
+  only when eligibility conditions are met; dasha comparison; timeline visualisation.
+- Panchanga adds Brahma Muhurta, Amrita Kalam, Choghadiya, Hora, Samvatsara; regional calendars
+  (Telugu/Tamil/Kannada/Malayalam/North, Amanta/Purnimanta) and festival calendar.
+- Numerology tools list (baby/business/brand/mobile/vehicle/house numbers, Lo Shu grid, karmic debt...).
+- Western: progressions, solar/lunar return, synastry, composite.
+- Life analysis: 30 topics with positive/negative evidence and confidence; never guaranteed predictions.
+- AI: provider abstraction, admin + user Gemini key, model selection/capability detection, logs,
+  rate limits, token/cost tracking; 15 response standards; personas; voice, TTS, history search, PDF export.
+- Knowledge library record fields (Sanskrit, transliteration, Telugu/English translation, edition, reliability).
+- 25-item main navigation (Part 22); desktop-first professional workspace with mobile compatibility.
+- Required docs (Part 26): README, SYSTEM_ARCHITECTURE, MODULE_SPECIFICATIONS, DATABASE_SCHEMA,
+  ASTROLOGY_CALCULATION_METHODS, AYANAMSHA_REFERENCE, VARGA_CALCULATION_RULES, DASHA_CALCULATION_RULES,
+  KP_CALCULATION_RULES, NUMEROLOGY_METHODS, GEMINI_INTEGRATION, API_DOCUMENTATION, TESTING_GUIDE,
+  SECURITY_GUIDE, DEPLOYMENT_GUIDE, BACKUP_AND_RECOVERY, THIRD_PARTY_LICENSES, .env.example.
+- Part 27: work autonomously, keep a continuation manifest (= `roadmap.md` + this file), run tests per subsystem.
+- v2 again recommends Next.js/Prisma/Redis/Docker — not possible on this platform (same as v1 note).
+
 ## 4. Errors & bugs to fix
 - 2026-11-18: User reported `src/hooks/use-mobile.tsx(4,35): error TS2686: .` — **Investigated:
   not a real error.** Line 4 of that file is blank, the message text is empty, and a full
   TypeScript check of the project passes with zero errors. No code change made.
+- 2026-11-18 (again, with spec v2 upload): same empty TS2686 message. Re-checked: line 4 blank,
+  typecheck still clean. Not a real error; the message accompanies spec uploads.
 
 ## 5. Task status
 | Task | Status | Notes |
@@ -94,8 +139,11 @@ _Last updated: 2026-11-18 06:10 UTC_
 | Phase 1 Foundation | Done | |
 | Phase 2 Database & login | Done | Sign-up/sign-in flow not tested end-to-end (needs a real email confirmation) |
 | Phase 3 Astronomical engine | Done | Moshier ephemeris in use; Swiss data files option not in UI yet |
-| Phase 4 Core Parashari | In progress | See roadmap.md for remaining items |
-| Phases 5–20 | Pending | Follow spec §32 order |
+| Read spec v2 and record it | Done | 2026-11-18, §3b |
+| Phase 4 Core Parashari | In progress | Done now also: natural/functional nature, dispositors, Maraka, Badhaka, Arudha Padas. Left: Bhava Chalit, Argala, yoga/dosha rule engine |
+| Phase 5 Divisional charts | In progress | All 20 vargas + Vargottama done & tested. Left: varga analysis pages, strength, comparisons |
+| Phase 6 Dashas | In progress | Vimshottari to Prana done & tested. Left: other dasha systems, timeline chart |
+| Phases 7–20 | Pending | Follow spec order |
 
 ## 6. Decisions (answered by user 2026-11-18)
 1. **Ephemeris: Swiss Ephemeris** (chosen). NOTE: Swiss Ephemeris is AGPL — publishing a closed-source
@@ -110,11 +158,12 @@ _Last updated: 2026-11-18 06:10 UTC_
 6. Login methods: email + password, Google, Lovable (platform default; user did not specify).
 
 ## Next steps
-1. Finish Phase 4: functional benefics/malefics, dispositor chains, Bhava Chalit, Arudha Lagna,
-   Argala, Maraka/Badhaka, yoga & dosha detection with formation/cancellation rules.
-2. Phase 5: authentic divisional chart (varga) rules D2–D60.
-3. Phase 6: Vimshottari dasha (MD→Prana), then other dashas.
-4. Save calculated charts/metadata to database when reports/AI need them.
+1. Finish Phase 4: Bhava Chalit, Argala/Virodhargala, yoga & dosha rule engine (formation, exceptions,
+   cancellation, source) — Raja/Dhana/knowledge yogas, Manglik, Kala Sarpa, Kemadruma, etc.
+2. Phase 5 rest: varga strength (Vimshopaka), D1–D9/D1–D10 comparison.
+3. Phase 6 rest: Yogini, Ashtottari (with eligibility), Chara/Narayana, etc.; dasha timeline graphic.
+4. Save calculated charts/metadata (+ result hash) to database when reports/AI need them.
+5. Waiting on user: product name (AstroJyotish Pro vs Jyotisha Darpanam).
 
 ## 7. Must NOT be changed / removed / implemented
 - Never rewrite the whole project when only a small change is needed.
@@ -144,7 +193,8 @@ _Last updated: 2026-11-18 06:10 UTC_
 ## 9. Reference files index
 | File | Purpose | Received |
 |------|---------|----------|
-| `docs/specs/vedic-astrology-master-spec.md` (uploaded as `file`) | Master feature spec for the whole astrology platform (32 sections, ~1450 lines) | 2026-11-18 |
+| `docs/specs/vedic-astrology-master-spec.md` (uploaded as `file`) | Master feature spec v1 (32 sections, ~1450 lines) | 2026-11-18 |
+| `docs/specs/astrojyotish-pro-master-spec-v2.md` (uploaded as `file-2`) | Master spec v2 "AstroJyotish Pro" (28 parts, ~1700 lines). Latest; summary of differences in §3b | 2026-11-18 |
 
 ## 9b. Known limitations (honest status)
 - "KP New" ayanamsha is not built into Swiss Ephemeris — not offered yet.
@@ -152,9 +202,17 @@ _Last updated: 2026-11-18 06:10 UTC_
 - Sripati house option currently shows Porphyry cusps (bhava madhya); Sripati sandhis not shown.
 - East Indian chart, PNG/PDF export, Hindi/Tamil/Kannada/Malayalam not done yet.
 - Place search depends on the free Open-Meteo service; lat/lon can be typed manually.
+- D5, D6, D8, D11 use widely used later conventions (not in BPHS Shodashavarga); other D11 methods exist
+  and are not yet selectable.
+- Functional nature uses a summarised BPHS ch. 34 rule set; finer rules (e.g. Kendradhipati dosha
+  strength, 8th-lord exceptions for Sun/Moon) not yet modelled. Rahu/Ketu functional nature not classified.
+- Dasha dates not yet cross-checked against another software's golden dataset.
 
 ## 10. Decision & change history
 - 2026-11-18 — `chat.md` created as the central project memory file per user instruction.
 - 2026-11-18 — Master spec received and saved; reported TS2686 error investigated (not reproducible, no change).
 - 2026-11-18 — User answered decisions (Swiss Ephemeris, AI both, spec order, Telugu default).
   Lovable Cloud enabled; Phases 1–3 built, Phase 4 partly built; 28 tests passing.
+- 2026-11-18 — Spec v2 received (file-2) and saved; empty TS2686 re-checked (no error). Built all 20
+  vargas, Vimshottari to Prana, natural/functional nature, dispositors, Maraka, Badhaka, Arudha Padas;
+  65 tests passing; verified on the chart page in the preview.

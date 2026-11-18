@@ -26,6 +26,9 @@ import {
 } from "@/lib/astro/settings";
 import { formatOffset } from "@/lib/astro/time";
 import { useChart } from "@/lib/astro/use-chart";
+import { VARGAS, VARGA_BY_ID, isVargottama, vargaPosition, type VargaId } from "@/lib/astro/varga";
+import { DashaPanel } from "@/components/chart/DashaPanel";
+import { NaturePanel } from "@/components/chart/NaturePanel";
 import type { BirthProfile, UserProfile } from "@/lib/birth-profiles";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -44,6 +47,8 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
   const [showDegrees, setShowDegrees] = useState(false);
   const [showOuter, setShowOuter] = useState(false);
   const [selectedSign, setSelectedSign] = useState<number | null>(null);
+  const [varga, setVarga] = useState<VargaId>("D1");
+  const vargaRule = VARGA_BY_ID[varga];
 
   const input = useMemo(
     () => ({ utc, latitude: profile.latitude, longitude: profile.longitude }),
@@ -55,31 +60,34 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
     const arr: ChartItem[][] = Array.from({ length: 12 }, () => []);
     if (!chart) return arr;
     if (profile.time_known) {
-      arr[chart.lagna.sign]!.push({
+      const lv = vargaPosition(varga, chart.lagna.longitude);
+      arr[lv.sign]!.push({
         key: "lagna",
         label: t("lagnaAbbr"),
-        title: `${t("lagna")} ${formatDms(chart.lagna.longitude)}`,
-        degree: formatDms(chart.lagna.longitude).split("′")[0] + "′",
+        title: `${t("lagna")} ${rashiName(lv.sign, lang)} ${formatDms(lv.degree)}`,
+        degree: formatDms(lv.degree).split("′")[0] + "′",
         isLagna: true,
       });
     }
     for (const p of chart.planets) {
       if (!showOuter && OUTER_PLANETS.includes(p.id)) continue;
-      arr[p.sign]!.push({
+      const v = vargaPosition(varga, p.longitude);
+      arr[v.sign]!.push({
         key: p.id,
         label: grahaAbbr(p.id, lang),
-        title: `${grahaName(p.id, lang)} ${rashiName(p.sign, lang)} ${formatDms(p.longitude)}`,
-        degree: formatDms(p.longitude).split("′")[0] + "′",
+        title: `${grahaName(p.id, lang)} ${rashiName(v.sign, lang)} ${formatDms(v.degree)}`,
+        degree: formatDms(v.degree).split("′")[0] + "′",
         retro: p.retrograde,
         combust: p.combust,
       });
     }
     return arr;
-  }, [chart, lang, showOuter, profile.time_known, t]);
+  }, [chart, lang, showOuter, profile.time_known, t, varga]);
 
   const signLabels = RASHIS.map((r) => r[lang]);
   const centerTitle = profile.name;
-  const centerSubtitle = `${profile.birth_date} ${profile.time_known ? (profile.birth_time ?? "").slice(0, 5) : ""}`;
+  const centerSubtitle = `${varga} · ${profile.birth_date} ${profile.time_known ? (profile.birth_time ?? "").slice(0, 5) : ""}`;
+  const lagnaVargaSign = chart ? (profile.time_known || varga === "D1" ? vargaPosition(varga, chart.lagna.longitude).sign : chart.lagna.sign) : 0;
   const planetsShown = chart?.planets.filter((p) => showOuter || !OUTER_PLANETS.includes(p.id)) ?? [];
   const nameList = (ids: GrahaId[]) => (ids.length ? ids.map((g) => grahaName(g, lang)).join(", ") : "—");
 
@@ -148,6 +156,21 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
           </div>
         </div>
         <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <div className="flex items-center gap-2">
+            <Label className="text-xs">{t("varga")}</Label>
+            <Select value={varga} onValueChange={(v) => { setVarga(v as VargaId); setSelectedSign(null); }}>
+              <SelectTrigger className="w-56">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {VARGAS.map((v) => (
+                  <SelectItem key={v.id} value={v.id}>
+                    {v.id} · {v[lang]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <Tabs value={style} onValueChange={(v) => setStyle(v as ChartStyle)}>
             <TabsList>
               <TabsTrigger value="south">{t("southIndian")}</TabsTrigger>
@@ -185,7 +208,7 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
               {style === "south" ? (
                 <SouthIndianChart
                   bySign={bySign}
-                  lagnaSign={chart.lagna.sign}
+                  lagnaSign={lagnaVargaSign}
                   signLabels={signLabels}
                   centerTitle={centerTitle}
                   centerSubtitle={centerSubtitle}
@@ -198,7 +221,7 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
               ) : (
                 <NorthIndianChart
                   bySign={bySign}
-                  lagnaSign={chart.lagna.sign}
+                  lagnaSign={lagnaVargaSign}
                   signLabels={signLabels}
                   retroMark={t("retroAbbr")}
                   combustMark={t("combustAbbr")}
@@ -207,6 +230,16 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
                   selectedSign={selectedSign}
                 />
               )}
+              <div className="mt-3 space-y-1 border-t px-2 pt-3 text-xs text-muted-foreground">
+                <div className="text-sm font-semibold text-foreground">
+                  {vargaRule.id} {vargaRule[lang]} · {vargaRule.area[lang]}
+                </div>
+                <div>
+                  <b>{t("vargaMethod")}:</b> {vargaRule.method[lang]}
+                </div>
+                <div>{t(vargaRule.source === "BPHS" ? "vargaSourceBphs" : "vargaSourceLater")}</div>
+                {varga !== "D1" && <div>{t("vargaDegreeNote")}</div>}
+              </div>
             </div>
             <div className="space-y-4">
               <div className="rounded-2xl bg-kumkum p-5 text-primary-foreground shadow-glow">
@@ -220,7 +253,7 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
                 </div>
               </div>
               {selectedSign !== null && (
-                <SignDetail sign={selectedSign} chart={chart} onClose={() => setSelectedSign(null)} />
+                <SignDetail sign={selectedSign} chart={chart} varga={varga} onClose={() => setSelectedSign(null)} />
               )}
               <div className="rounded-2xl border bg-card p-5 shadow-card">
                 <h3 className="mb-3 font-semibold">{t("combinations")}</h3>
@@ -253,6 +286,7 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
                     <TableHead>{t("degree")}</TableHead>
                     <TableHead>{t("nakshatra")}</TableHead>
                     <TableHead>{t("nakLord")}</TableHead>
+                    <TableHead>{t("navamshaShort")}</TableHead>
                     <TableHead>{t("house")}</TableHead>
                     <TableHead>{t("dignity")}</TableHead>
                     <TableHead>{t("status")}</TableHead>
@@ -273,6 +307,14 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
                         {nakshatraName(p.nakshatra, lang)} · {p.pada}
                       </TableCell>
                       <TableCell>{grahaName(p.nakshatraLord, lang)}</TableCell>
+                      <TableCell className="whitespace-nowrap">
+                        {rashiName(vargaPosition("D9", p.longitude).sign, lang)}
+                        {isVargottama(p.longitude) && (
+                          <Badge variant="outline" className="ml-1 border-gold/50 bg-gold/15 text-gold-foreground">
+                            {t("vargottama")}
+                          </Badge>
+                        )}
+                      </TableCell>
                       <TableCell>{profile.time_known ? p.house : "—"}</TableCell>
                       <TableCell>
                         <Badge variant="outline" className={cn("font-medium", DIGNITY_TONE[p.dignity])}>
@@ -347,6 +389,14 @@ export function ChartView({ profile, utc, defaults }: { profile: BirthProfile; u
             </section>
           )}
 
+          <NaturePanel chart={chart} timeKnown={profile.time_known} />
+
+          <DashaPanel
+            moonLongitude={chart.planets.find((p) => p.id === "moon")!.longitude}
+            birth={utc}
+            timeZone={profile.timezone}
+          />
+
           <section className="rounded-2xl border bg-card p-5 shadow-card">
             <h2 className="mb-3 text-lg font-semibold">{t("calcDetails")}</h2>
             <dl className="grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2 tabular">
@@ -379,15 +429,17 @@ function Meta({ k, v }: { k: string; v: string }) {
 function SignDetail({
   sign,
   chart,
+  varga,
   onClose,
 }: {
   sign: number;
+  varga: VargaId;
   chart: NonNullable<ReturnType<typeof useChart>["chart"]>;
   onClose: () => void;
 }) {
   const { t, lang } = useI18n();
-  const house = chart.houses.find((h) => h.sign === sign);
-  const planets = chart.planets.filter((p) => p.sign === sign);
+  const house = varga === "D1" ? chart.houses.find((h) => h.sign === sign) : undefined;
+  const planets = chart.planets.filter((p) => vargaPosition(varga, p.longitude).sign === sign);
   return (
     <div className="rounded-2xl border border-gold/50 bg-card p-5 shadow-card animate-rise">
       <div className="flex items-start justify-between">
