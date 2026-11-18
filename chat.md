@@ -253,3 +253,7 @@ Same scope as v1, reorganised into 28 parts. New or changed points vs v1:
   65 tests passing; verified on the chart page in the preview.
 - 2026-11-18 06:15 — Spec v3 + existing HTML tool received; audit written (`docs/AUDIT.md`), engines
   cross-checked (agree < 5″), app renamed to AstroJyotish Pro, unknown-time warnings added.
+- 2026-11-18 06:22 — file-5 received: identical to spec v3 (only an 8-line instruction header added);
+  not saved again. TS2686 in `src/hooks/use-mobile.tsx` diagnosed: line 4 is blank, the file already
+  imports React as a module, and `tsgo -b --noEmit` passes with zero errors — no code change needed.
+  Still awaiting user answer: should file-4's features be ported into this app?
