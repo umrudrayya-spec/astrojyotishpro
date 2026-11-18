@@ -13,11 +13,15 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAiRouteImport } from './routes/_authenticated/ai'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedMatchingRouteImport } from './routes/_authenticated/matching'
 import { Route as AuthenticatedPanchangaRouteImport } from './routes/_authenticated/panchanga'
 import { Route as AuthenticatedProfilesRouteImport } from './routes/_authenticated/profiles'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as ApiAiChatRouteImport } from './routes/api/ai-chat'
+import { Route as AuthenticatedAiIndexRouteImport } from './routes/_authenticated/ai.index'
+import { Route as AuthenticatedAiThreadIdRouteImport } from './routes/_authenticated/ai.$threadId'
 import { Route as AuthenticatedChartIndexRouteImport } from './routes/_authenticated/chart.index'
 import { Route as AuthenticatedChartProfileIdRouteImport } from './routes/_authenticated/chart.$profileId'
 
@@ -39,6 +43,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAiRoute = AuthenticatedAiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
@@ -65,6 +74,21 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiAiChatRoute = ApiAiChatRouteImport.update({
+  id: '/api/ai-chat',
+  path: '/api/ai-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAiIndexRoute = AuthenticatedAiIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAiRoute,
+} as any)
+const AuthenticatedAiThreadIdRoute = AuthenticatedAiThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => AuthenticatedAiRoute,
+} as any)
 const AuthenticatedChartIndexRoute = AuthenticatedChartIndexRouteImport.update({
   id: '/chart/',
   path: '/chart/',
@@ -81,12 +105,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/ai': typeof AuthenticatedAiRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/matching': typeof AuthenticatedMatchingRoute
   '/panchanga': typeof AuthenticatedPanchangaRoute
   '/profiles': typeof AuthenticatedProfilesRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/api/ai-chat': typeof ApiAiChatRoute
+  '/ai/$threadId': typeof AuthenticatedAiThreadIdRoute
   '/chart/$profileId': typeof AuthenticatedChartProfileIdRoute
+  '/ai/': typeof AuthenticatedAiIndexRoute
   '/chart/': typeof AuthenticatedChartIndexRoute
 }
 export interface FileRoutesByTo {
@@ -98,7 +126,10 @@ export interface FileRoutesByTo {
   '/panchanga': typeof AuthenticatedPanchangaRoute
   '/profiles': typeof AuthenticatedProfilesRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/api/ai-chat': typeof ApiAiChatRoute
+  '/ai/$threadId': typeof AuthenticatedAiThreadIdRoute
   '/chart/$profileId': typeof AuthenticatedChartProfileIdRoute
+  '/ai': typeof AuthenticatedAiIndexRoute
   '/chart': typeof AuthenticatedChartIndexRoute
 }
 export interface FileRoutesById {
@@ -107,12 +138,16 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/ai': typeof AuthenticatedAiRouteWithChildren
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/matching': typeof AuthenticatedMatchingRoute
   '/_authenticated/panchanga': typeof AuthenticatedPanchangaRoute
   '/_authenticated/profiles': typeof AuthenticatedProfilesRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/api/ai-chat': typeof ApiAiChatRoute
+  '/_authenticated/ai/$threadId': typeof AuthenticatedAiThreadIdRoute
   '/_authenticated/chart/$profileId': typeof AuthenticatedChartProfileIdRoute
+  '/_authenticated/ai/': typeof AuthenticatedAiIndexRoute
   '/_authenticated/chart/': typeof AuthenticatedChartIndexRoute
 }
 export interface FileRouteTypes {
@@ -121,12 +156,16 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/ai'
     | '/dashboard'
     | '/matching'
     | '/panchanga'
     | '/profiles'
     | '/settings'
+    | '/api/ai-chat'
+    | '/ai/$threadId'
     | '/chart/$profileId'
+    | '/ai/'
     | '/chart/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -138,7 +177,10 @@ export interface FileRouteTypes {
     | '/panchanga'
     | '/profiles'
     | '/settings'
+    | '/api/ai-chat'
+    | '/ai/$threadId'
     | '/chart/$profileId'
+    | '/ai'
     | '/chart'
   id:
     | '__root__'
@@ -146,12 +188,16 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/ai'
     | '/_authenticated/dashboard'
     | '/_authenticated/matching'
     | '/_authenticated/panchanga'
     | '/_authenticated/profiles'
     | '/_authenticated/settings'
+    | '/api/ai-chat'
+    | '/_authenticated/ai/$threadId'
     | '/_authenticated/chart/$profileId'
+    | '/_authenticated/ai/'
     | '/_authenticated/chart/'
   fileRoutesById: FileRoutesById
 }
@@ -160,6 +206,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiAiChatRoute: typeof ApiAiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -191,6 +238,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/ai': {
+      id: '/_authenticated/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AuthenticatedAiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
@@ -227,6 +281,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/ai-chat': {
+      id: '/api/ai-chat'
+      path: '/api/ai-chat'
+      fullPath: '/api/ai-chat'
+      preLoaderRoute: typeof ApiAiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/ai/': {
+      id: '/_authenticated/ai/'
+      path: '/'
+      fullPath: '/ai/'
+      preLoaderRoute: typeof AuthenticatedAiIndexRouteImport
+      parentRoute: typeof AuthenticatedAiRoute
+    }
+    '/_authenticated/ai/$threadId': {
+      id: '/_authenticated/ai/$threadId'
+      path: '/$threadId'
+      fullPath: '/ai/$threadId'
+      preLoaderRoute: typeof AuthenticatedAiThreadIdRouteImport
+      parentRoute: typeof AuthenticatedAiRoute
+    }
     '/_authenticated/chart/': {
       id: '/_authenticated/chart/'
       path: '/chart'
@@ -244,7 +319,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedAiRouteChildren {
+  AuthenticatedAiThreadIdRoute: typeof AuthenticatedAiThreadIdRoute
+  AuthenticatedAiIndexRoute: typeof AuthenticatedAiIndexRoute
+}
+
+const AuthenticatedAiRouteChildren: AuthenticatedAiRouteChildren = {
+  AuthenticatedAiThreadIdRoute: AuthenticatedAiThreadIdRoute,
+  AuthenticatedAiIndexRoute: AuthenticatedAiIndexRoute,
+}
+
+const AuthenticatedAiRouteWithChildren = AuthenticatedAiRoute._addFileChildren(
+  AuthenticatedAiRouteChildren,
+)
+
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAiRoute: typeof AuthenticatedAiRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMatchingRoute: typeof AuthenticatedMatchingRoute
   AuthenticatedPanchangaRoute: typeof AuthenticatedPanchangaRoute
@@ -255,6 +345,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAiRoute: AuthenticatedAiRouteWithChildren,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMatchingRoute: AuthenticatedMatchingRoute,
   AuthenticatedPanchangaRoute: AuthenticatedPanchangaRoute,
@@ -272,6 +363,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ApiAiChatRoute: ApiAiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

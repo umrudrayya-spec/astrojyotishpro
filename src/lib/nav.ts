@@ -41,7 +41,7 @@ import {
 import type { DictKey } from "@/lib/i18n";
 
 /** Routes that exist today. A section with `to` is a real link; one without is shown as "coming". */
-export type NavPath = "/dashboard" | "/profiles" | "/chart" | "/panchanga" | "/matching" | "/settings";
+export type NavPath = "/dashboard" | "/profiles" | "/chart" | "/panchanga" | "/matching" | "/ai" | "/settings";
 
 export interface NavItem {
   id: string;
@@ -133,7 +133,7 @@ export const NAV_GROUPS: NavGroup[] = [
     id: "ai",
     label: "grpAi",
     items: [
-      { id: "ai", label: "secAi", icon: Bot, keywords: "gemini chat" },
+      { id: "ai", label: "secAi", icon: Bot, to: "/ai", keywords: "gemini chat" },
       { id: "reports", label: "secReports", icon: FileText, keywords: "pdf" },
     ],
   },
